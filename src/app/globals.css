@@ -2,3 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar::-webkit-scrollbar {
+    width: 3px;
+    }
+        
+    .scrollbar::-webkit-scrollbar-track { 
+    background: #f6f2f2;
+    
+    }
+    
+    .scrollbar::-webkit-scrollbar-thumb { 
+    background:#7f7f7f;
+    border-radius: 3px ;
+    }
+    @keyframes rotate-left {
+        0% {
+          transform: rotate(-20deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+    
+      @keyframes rotate-right {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(20deg);
+        }
+      }
+    
+      .hover\:rotate-left-right:hover {
+        animation: rotate-left 0.3s ease-in-out infinite alternate, rotate-right 0.3s ease-in-out infinite alternate;
+      }
