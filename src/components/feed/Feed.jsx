@@ -55,10 +55,10 @@ const Feed = () => {
     const pathname=usePathname();
   return (
     <div className='w-full flex flex-col items-end font-sans'>
-      <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] gap-3 font-semibold text-lg mb-5'>
-            <Link className={`h-10 ${(pathname==="/"||pathname==="/home/foryou") && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
-            <Link className={`h-10 ${pathname==="/home/following" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/following"><span className='px-5'>Following</span></Link>
-            <Link className={`h-10 ${pathname==="/home/yourtags" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
+      <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] font-semibold text-lg mb-5'>
+            <Link className={`h-12 flex items-center ${(pathname==="/"||pathname==="/home/foryou") ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/home/following" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/following"><span className='px-5'>Following</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/home/yourtags" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
         </div>
     {
       data?.map(d=>(
@@ -75,7 +75,7 @@ const Feed = () => {
                 </div>
                 <div className='text-gray-500 cursor-pointer'><MoreHorizIcon/></div>
               </div>
-              <div className='relative min-h-[500px] max-h-[600px] '>
+              <div className='-z-10 relative min-h-[500px] max-h-[600px] '>
                 <Image className='object-cover' src={d.postimg} fill={true} alt=''></Image>
               </div>
               <div className='h-fit py-3 px-5 bg-[#272424] flex flex-col items-center rounded-b-sm justify-between'>
