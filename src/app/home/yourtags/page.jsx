@@ -1,66 +1,58 @@
-"use client"
 import React from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { usePathname } from 'next/navigation';
 
-const Feed = () => {
+const Yourtags = () => {
 
     const data=[
-      {
-        id:1,
-        img:"/pyramid_closed_96.png",
-        postimg:"/cropped-1920-1080-1314003.png",
-        desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-        name:"Joy",
-        notes:"100"
-      },
-      {
-        id:2,
-        img:"/pyramid_closed_96.png",
-        postimg:"/cropped-1920-1080-1314003.png",
-        desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-        name:"Joy",
-        notes:"100"
-      },
-      {
-        id:3,
-        img:"/pyramid_closed_96.png",
-        postimg:"/cropped-1920-1080-1314003.png",
-        desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-        name:"Joy",
-        notes:"100"
-      },
-      {
-        id:4,
-        img:"/pyramid_closed_96.png",
-        postimg:"/cropped-1920-1080-1314003.png",
-        desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-        name:"Joy",
-        notes:"100"
-      },
-      {
-        id:5,
-        img:"/pyramid_closed_96.png",
-        postimg:"/cropped-1920-1080-1314003.png",
-        desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-        name:"Joy",
-        notes:"100"
-      },
-    ]
-    const pathname=usePathname();
+        {
+          id:1,
+          img:"/pyramid_closed_96.png",
+          postimg:"/cropped-1920-1080-1314003.png",
+          desc:"Glasswinged butterflies are a South American species known for their transparent wings",
+          name:"Joy",
+          notes:"100"
+        },
+        {
+          id:2,
+          img:"/pyramid_closed_96.png",
+          postimg:"/cropped-1920-1080-1314003.png",
+          desc:"Glasswinged butterflies are a South American species known for their transparent wings",
+          name:"Joy",
+          notes:"100"
+        },
+        {
+          id:3,
+          img:"/pyramid_closed_96.png",
+          postimg:"/cropped-1920-1080-1314003.png",
+          desc:"Glasswinged butterflies are a South American species known for their transparent wings",
+          name:"Joy",
+          notes:"100"
+        },
+        {
+          id:4,
+          img:"/pyramid_closed_96.png",
+          postimg:"/cropped-1920-1080-1314003.png",
+          desc:"Glasswinged butterflies are a South American species known for their transparent wings",
+          name:"Joy",
+          notes:"100"
+        },
+        {
+          id:5,
+          img:"/pyramid_closed_96.png",
+          postimg:"/cropped-1920-1080-1314003.png",
+          desc:"Glasswinged butterflies are a South American species known for their transparent wings",
+          name:"Joy",
+          notes:"100"
+        },
+      ]
+
   return (
-    <div className='w-full flex flex-col items-end font-sans'>
-      <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] gap-3 font-semibold text-lg mb-5'>
-            <Link className={`h-10 ${(pathname==="/"||pathname==="/home/foryou") && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
-            <Link className={`h-10 ${pathname==="/home/following" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/following"><span className='px-5'>Following</span></Link>
-            <Link className={`h-10 ${pathname==="/home/yourtags" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
-        </div>
-    {
+    <>
+        {
       data?.map(d=>(
       <div key={d.id} className='w-[70%] gap-5 flex mb-5'>
         <div className='w-[10%] h-full'>
@@ -97,9 +89,8 @@ const Feed = () => {
       </div>
       ))
     }
-
-    </div>
+    </>
   )
 }
 
-export default Feed
+export default Yourtags

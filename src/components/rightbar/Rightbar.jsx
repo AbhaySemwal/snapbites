@@ -9,21 +9,25 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const data=[
   {
+    id:1,
     name:"anxietyproblem",
     desc:"Anxiety Problem",
     img:"/cropped-1920-1080-1314003.png",
   },
   {
+    id:2,
     name:"anxietyproblem",
     desc:"Anxiety Problem",
     img:"/cropped-1920-1080-1314003.png",
   },
   {
+    id:3,
     name:"anxietyproblem",
     desc:"Anxiety Problem",
     img:"/cropped-1920-1080-1314003.png",
   },
   {
+    id:4,
     name:"anxietyproblem",
     desc:"Anxiety Problem",
     img:"/cropped-1920-1080-1314003.png",
@@ -33,13 +37,13 @@ const Rightbar = () => {
   return (
     <div className='w-[40%] flex flex-col font-sans'>
         <div className='w-[50%]'>
-          <div className='border-gray-600 border-b-[1px] pb-2.5 px-1.5 mb-3'>
+          <div className='border-gray-800 border-b-[1px] pb-2.5 px-1.5 mb-3'>
             <h2 className='text-xl font-semibold'>Check out these blogs</h2>
           </div>
           <div>
             {
-              data.map(d=>(
-                <div className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#0e0e0e]'>
+              data.slice(0,4).map(d=>(
+                <div key={d.id} className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#0e0e0e]'>
                   <div className='flex items-center gap-3'>
                     <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d.img} alt='' height={32} width={32}/>
                     <div className='text-sm font-semibold'>
@@ -57,7 +61,7 @@ const Rightbar = () => {
           </div>
         </div>
         <div className='w-[50%] my-5 p-2 text-base'>
-          <Link className='text-blue-500 hover:underline' href="/explore">Explore all of Snapbites</Link>
+          <Link className='text-blue-500 hover:underline' href="/explore/today">Explore all of Snapbites</Link>
         </div>
         <div className='w-[50%] flex flex-col'>
             <div className='border-gray-600 border-b-[1px] pb-2.5 px-1.5 mb-3'>
@@ -72,7 +76,7 @@ const Rightbar = () => {
                 </div>
                 <div className='text-gray-500 cursor-pointer'><MoreHorizIcon/></div>
               </div>
-              <div className='relative h-[500px]'>
+              <div className='-z-10 relative min-h-[500px] max-h-[600px]'>
                 <Image className='object-cover' src="/cropped-1920-1080-1314003.png" fill={true} alt=''></Image>
               </div>
               <div className='h-fit py-3 px-5 bg-[#272424] flex flex-col items-center rounded-b-sm justify-between'>
