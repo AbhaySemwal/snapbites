@@ -67,7 +67,7 @@ const Yourtags = () => {
                 </div>
                 <div className='text-gray-500 cursor-pointer'><MoreHorizIcon/></div>
               </div>
-              <div className='relative min-h-[500px] max-h-[600px] '>
+              <div className='-z-10 relative min-h-[500px] max-h-[600px] '>
                 <Image className='object-cover' src={d.postimg} fill={true} alt=''></Image>
               </div>
               <div className='h-fit py-3 px-5 bg-[#272424] flex flex-col items-center rounded-b-sm justify-between'>

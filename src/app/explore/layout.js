@@ -62,10 +62,10 @@ const Explore = ({children}) => {
   return (
     <div className='flex'>
         <div className='flex flex-col items-end font-sans text-white w-[60%] border-r-[1px] px-3 border-gray-800'>
-          <div className='w-[61%] flex border-gray-800 mt-10 border-b-[1px] gap-3 font-semibold text-lg mb-5'>
-            <Link className={`h-10 ${pathname==="/explore/today" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/explore/today"><span className='px-5'>Today</span></Link>
-            <Link className={`h-10 ${pathname==="/explore/foryou" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/explore/foryou"><span className='px-5'>For You</span></Link>
-            <Link className={`h-10 ${pathname==="/explore/trending" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/explore/trending"><span className='px-5'>Trending</span></Link>
+          <div className='w-[61%] flex border-gray-800 mt-10 border-b-[1px] font-semibold text-lg mb-5'>
+            <Link className={`h-12 flex items-center ${pathname==="/explore/today"? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/explore/today"><span className='px-5'>Today</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/explore/foryou" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/explore/foryou"><span className='px-5'>For You</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/explore/trending" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/explore/trending"><span className='px-5'>Trending</span></Link>
           </div>
           {children}
       </div>

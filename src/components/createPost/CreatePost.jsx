@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const CreatePost = () => {
   return (
-    <div className='w-[70%] font-sans flex justify-end gap-5 mb-10'>
+    <div className='w-[70%] font-sans flex justify-end gap-5 mb-5'>
         <div className='w-[10%]'>
             <Image className='cursor-pointer rounded-md' src="/pyramid_closed_96.png" width={75} height={75} alt=''></Image>
         </div>

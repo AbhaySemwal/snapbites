@@ -11,10 +11,10 @@ export default function Home({children}) {
     <div className="font-sans text-white mt-10 flex gap-8">
       <div className="w-[60%] flex flex-col items-end">
         <CreatePost/>
-        <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] gap-3 font-semibold text-lg mb-5'>
-            <Link className={`h-10 ${(pathname==="/"||pathname==="/home/foryou") && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
-            <Link className={`h-10 ${pathname==="/home/following" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/following"><span className='px-5'>Following</span></Link>
-            <Link className={`h-10 ${pathname==="/home/yourtags" && "border-blue-400 border-solid  text-blue-400 border-b-2"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
+        <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] font-semibold text-lg mb-5'>
+            <Link className={`h-12 flex items-center ${(pathname==="/"||pathname==="/home/foryou") ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/home/following" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/following"><span className='px-5'>Following</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/home/yourtags" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
         </div>
         {children}
       </div>

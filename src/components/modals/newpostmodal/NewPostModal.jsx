@@ -9,7 +9,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 const NewPostModal = () => {
   
   return (
-    <div className='font-sans absolute flex justify-center right-0 items-center top-0 h-[82vh] bg-transparent/80 text-white w-screen'>
+    <div className='z-40 font-sans absolute flex justify-center right-0 items-center top-0 h-[82vh] bg-transparent/80 text-white w-screen'>
         <div className='relative flex left-32 gap-16'>
           <div className='flex'>
             <div className='flex flex-col gap-8 justify-center items-center'>
