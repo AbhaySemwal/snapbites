@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -7,6 +7,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { usePathname } from 'next/navigation';
+import { Close } from '@mui/icons-material';
 
 const Feed = () => {
 
@@ -52,13 +53,14 @@ const Feed = () => {
         notes:"100"
       },
     ]
+    const [clicked,setClicked]=useState(false);
     const pathname=usePathname();
   return (
     <div className='w-full flex flex-col items-end font-sans'>
       <div className='font-sans w-[61%] flex border-gray-800 border-b-[1px] font-semibold text-lg mb-5'>
-            <Link className={`h-12 flex items-center ${(pathname==="/"||pathname==="/home/foryou") ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/foryou"><span className='px-5  '>For you</span></Link>
-            <Link className={`h-12 flex items-center ${pathname==="/home/following" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/following"><span className='px-5'>Following</span></Link>
-            <Link className={`h-12 flex items-center ${pathname==="/home/yourtags" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/home/yourtags"><span className='px-5'>Your tags</span></Link>
+            <Link className={`h-12 flex items-center ${(pathname==="/"||pathname==="/dashboard/foryou") ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/dashboard/foryou"><span className='px-5  '>For you</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/dashboard/following" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/dashboard/following"><span className='px-5'>Following</span></Link>
+            <Link className={`h-12 flex items-center ${pathname==="/dashboard/yourtags" ? "border-blue-400 border-solid  text-blue-400 border-b-2":"hover:bg-[#272424]"}`} href="/dashboard/yourtags"><span className='px-5'>Your tags</span></Link>
         </div>
     {
       data?.map(d=>(
@@ -83,14 +85,18 @@ const Feed = () => {
                   <p className=''>{d.desc}</p>
                 </div>
                 <div className='w-full flex justify-between items-center py-3'>
-                  <button className='border-[1px] border-gray-500 rounded-full flex items-end py-1.5 px-3 gap-1'><p className='font-[400]'>{d.notes}</p><p className='text-base text-gray-400'>notes</p></button>
+                  {!clicked?<button onClick={()=>{setClicked(!clicked)}} className='border-[1px] border-gray-500 rounded-full flex items-end py-1.5 px-3 gap-1'><p className='font-[400]'>{d.notes}</p><p className='text-base text-gray-400'>notes</p></button>:
+                  <button onClick={()=>{setClicked(!clicked)}} className='text-gray-200 bg-gray-500 rounded-full flex items-center py-1.5 px-3 gap-1'><Close fontSize='small'/><p className='font-[400]'>Close</p><p className='text-base'>notes</p></button>}
                   <div className='flex gap-5 items-center'>
                     <ShareIcon className='text-blue-300 transform scale-110'/>
-                    <ChatBubbleOutlineIcon className='text-green-400 transform scale-110'/>
+                    <ChatBubbleOutlineIcon onClick={()=>{setClicked(!clicked)}} className='text-green-400 transform scale-110'/>
                     <FavoriteBorderIcon className='text-red-400 transform scale-110'
                     />
                   </div>
                 </div>
+                {clicked&&<div className='h-[100px]'>
+                  Notes
+                </div>}
               </div>
             </div>
         </div>
