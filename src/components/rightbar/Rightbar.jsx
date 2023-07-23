@@ -1,11 +1,13 @@
+"use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Close } from '@mui/icons-material';
 
 const data=[
   {
@@ -34,6 +36,8 @@ const data=[
   },
 ]
 const Rightbar = () => {
+  const [clicked,setClicked]=useState(false);
+
   return (
     <div className='w-[40%] flex flex-col font-sans'>
         <div className='w-[50%]'>
@@ -45,7 +49,7 @@ const Rightbar = () => {
               data.slice(0,4).map(d=>(
                 <div key={d.id} className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#0e0e0e]'>
                   <div className='flex items-center gap-3'>
-                    <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d.img} alt='' height={32} width={32}/>
+                    <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d.img} alt='' height={1000} width={1000}/>
                     <div className='text-sm font-semibold'>
                       <p>{d.name}</p>
                       <p className='font-normal text-gray-400'>{d.desc}</p>
@@ -84,14 +88,18 @@ const Rightbar = () => {
                   <p className=''>Glasswinged butterflies are a South American species known for their transparent wings</p>
                 </div>
                 <div className='w-full flex justify-between items-center py-3'>
-                  <button className='border-[1px] border-gray-500 rounded-full flex items-end py-1.5 px-3 gap-1'><p className='font-[400]'>100</p><p className='text-base text-gray-400'>notes</p></button>
+                {!clicked?<button onClick={()=>{setClicked(!clicked)}} className='border-[1px] border-gray-500 rounded-full flex items-end py-1.5 px-3 gap-1'><p className='font-[400]'>100</p><p className='text-base text-gray-400'>notes</p></button>:
+                  <button onClick={()=>{setClicked(!clicked)}} className='text-gray-200 bg-gray-500 rounded-full flex items-center py-1.5 px-3 gap-1'><Close fontSize='small'/><p className='font-[400]'>Close</p><p className='text-base'>notes</p></button>}
                   <div className='flex gap-5 items-center'>
                     <ShareIcon className='text-blue-300 transform scale-110'/>
-                    <ChatBubbleOutlineIcon className='text-green-400 transform scale-110'/>
+                    <ChatBubbleOutlineIcon onClick={()=>{setClicked(!clicked)}} className='text-green-400 transform scale-110'/>
                     <FavoriteBorderIcon className='text-red-400 transform scale-110'
                     />
                   </div>
                 </div>
+                {clicked&&<div className='h-[100px]'>
+                  Notes
+                </div>}
               </div>
             </div>
         </div>
