@@ -1,9 +1,16 @@
+"use client"
 import React from 'react'
 import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
 import { Email } from '@mui/icons-material';
 import Navbar from '@/components/navbar/Navbar';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const Inbox = () => {
+  const session=useSession();
+  const router=useRouter();
+  if(session.status==="unauthenticated")
+  router?.push("/login")
   return (
     <>
       <Navbar/>

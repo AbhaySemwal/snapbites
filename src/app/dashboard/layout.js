@@ -3,10 +3,15 @@ import CreatePost from "@/components/createPost/CreatePost";
 import Rightbar from "@/components/rightbar/Rightbar";
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Navbar from "@/components/navbar/Navbar";
+import { useSession } from "next-auth/react";
 
 export default function Home({children}) {
+  const session=useSession();
+  const router=useRouter();
+  if(session.status==="unauthenticated")
+  router?.push("/login")
   const pathname=usePathname();
   return (
     <>

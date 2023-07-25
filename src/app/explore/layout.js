@@ -3,8 +3,9 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image';
 import CloseIcon from '@mui/icons-material/Close';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Navbar from '@/components/navbar/Navbar';
+import { useSession } from 'next-auth/react';
 
 const data1=[
   {
@@ -59,6 +60,10 @@ const data1=[
 
 const Explore = ({children}) => {
 
+  const session=useSession();
+  const router=useRouter();
+  if(session.status==="unauthenticated")
+  router?.push("/login")
   const pathname=usePathname();
   return (
     <>
