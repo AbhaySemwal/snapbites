@@ -1,5 +1,6 @@
 import { Favorite,HelpOutlineRounded, Redeem, Settings, StarBorderOutlined } from '@mui/icons-material'
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -9,7 +10,7 @@ const AccountModal = () => {
     <div className='font-sans absolute top-8 -left-[110px] w-[200px] bg-[#272424]'>
       <div className='h-[30px] items-center bg-[#3b3636] p-2 text-xs flex justify-between text-gray-300'>
         <h3>Account</h3>
-        <p>Log out</p>
+        <p onClick={signOut} >Log out</p>
       </div>
       <div className='flex flex-col'>
         <div className='flex justify-between hover:bg-[#464040] p-2 h-[35px]'>

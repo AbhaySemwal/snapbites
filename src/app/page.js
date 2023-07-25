@@ -1,10 +1,17 @@
+"use client"
 import CreatePost from "@/components/createPost/CreatePost";
 import Feed from "@/components/feed/Feed";
 import Navbar from "@/components/navbar/Navbar";
 import Rightbar from "@/components/rightbar/Rightbar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function Home() {
+const Home = () => {
+  const session=useSession();
+  const router=useRouter();
+  if(session.status==="unauthenticated")
+  router?.push("/login")
   return (
     <>
     <Navbar/>
@@ -18,3 +25,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;
