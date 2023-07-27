@@ -1,5 +1,5 @@
 "use client"
-import {React,useState} from 'react'
+import {React,useRef,useState} from 'react'
 import Link from 'next/link'
 import { Search } from '@mui/icons-material'
 import Image from 'next/image'
@@ -9,36 +9,44 @@ import { signIn, useSession } from 'next-auth/react'
 const Register = () => {
 
     const router = useRouter();
-    const session =useSession();
+    const session =useSession();  
+    const passwordAgain=useRef();
+    const pass=useRef();
     const[err,setErr]=useState(false);
+    const[warn,setWarn]=useState(false);
+    
     if(session.status==="loading")
     return<p>Loading...</p>;
     if(session.status==="authenticated")
-    router?.push("/");
-    console.log(session);
+    router?.push("/auth");
     
     const handleSubmit=async(e)=>{
       e.preventDefault();
-      const name=e.target[0].value;
-      const email=e.target[1].value;
-      const password=e.target[2].value;
-      
-      try{
-        const res=await fetch("/api/auth/register",{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json",
-          },
-          body:JSON.stringify({
-            name,email,password,
-          })
-        });
-        res.status===201&&router.push("/login")
-      }catch(err){
-        setErr(true);
+      if(pass.current.value!==passwordAgain.current.value)
+      setWarn(true);
+      else
+      {
+        const name=e.target[0].value;
+        const email=e.target[1].value;
+        const password=e.target[2].value;
+        try{
+          const res=await fetch("/api/auth/register",{
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json",
+            },
+            body:JSON.stringify({
+              name,email,password,
+            })
+          });
+          res.status===201&&router.push("/login");
+        }catch(err){
+          setErr(true);
+        }
       }
-  
+      
     }
+
   return (
     <div className='font-sans text-white '>
         <Image className='w-screen h-screen relative' src="/cropped-1920-1080-1314003.png" height={1000} width={1000} alt=''></Image>
@@ -62,8 +70,9 @@ const Register = () => {
                     <form className='flex flex-col gap-2 w-[400px]' onSubmit={handleSubmit}>
                         <input className='text-black outline-none rounded-md h-10 p-2' placeholder='Name' type='text'></input>
                         <input className='text-black outline-none rounded-md h-10 p-2' placeholder='Email' type='email'></input>
-                        <input className='text-black outline-none rounded-md h-10 p-2' placeholder='Password' type='password'></input>
-                        {/* <input className='text-black outline-none rounded-md h-10 p-2' placeholder='Password again' type='password'></input> */}
+                        <input ref={pass} className='text-black outline-none rounded-md h-10 p-2' placeholder='Password' minLength={6} type='password'></input>
+                        <input ref={passwordAgain} className='text-black outline-none rounded-md h-10 p-2' placeholder='Password again' minLength={6} type='password'></input>
+                        {warn&&<p className='text-red-500 text-xs'>Passwords don't match</p>}
                         <button className='bg-blue-400 text-black rounded-md h-10 font-semibold'>Sign up</button>
                     </form>
                     <div className='flex items-center justify-center w-full my-2'>

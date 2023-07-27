@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import LinkIcon from '@mui/icons-material/Link';
@@ -6,15 +6,20 @@ import ChatIcon from '@mui/icons-material/Chat';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Image from 'next/image';
+import PostModal from "@/components/modals/postmodal/PostModal"
+
 
 const CreatePost = () => {
-  return (
+        
+const [open,setOpen]=useState(false);
+
+return (
     <div className='w-[70%] font-sans flex justify-end gap-5 mb-5'>
         <div className='w-[10%]'>
             <Image className='cursor-pointer rounded-md' src="/pyramid_closed_96.png" width={75} height={75} alt=''></Image>
         </div>
         <div className='w-[90%] cursor-pointer rounded-sm px-5 flex justify-between items-center h-[100px] bg-[#272424]'>
-            <div className='group flex flex-col items-center'>
+            <div className='group flex flex-col items-center' onClick={()=>setOpen(!open)}>
                 <p className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-4xl font-bold'>Aa</p>
                 <p>Text</p>
             </div>
@@ -43,6 +48,7 @@ const CreatePost = () => {
                 <p>Video</p>
             </div>
         </div>
+        {open&&<PostModal setOpen={setOpen}/>}
     </div>
   )
 }

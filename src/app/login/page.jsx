@@ -13,8 +13,7 @@ const Login = () => {
   if(session.status==="loading")
   return<p>Loading...</p>;
   if(session.status==="authenticated")
-  router?.push("/");
-  console.log(session)
+  router?.push("/auth");
 
   const handleSubmit=async(e)=>{
 
