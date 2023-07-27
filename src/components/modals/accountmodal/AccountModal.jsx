@@ -59,7 +59,7 @@ const AccountModal = () => {
       <div className='flex flex-col pb-1'>
         <div className='flex justify-between hover:bg-[#464040] p-2 h-[45px]'>
           <div className='flex gap-2 text-xs items-center'>
-            <Image className='rounded-sm' height={30} width={30} src='/pyramid_closed_96.png' ></Image>
+            <Image className='rounded-sm' height={30} width={30} src='/pyramid_closed_96.png' alt=''></Image>
             <div className='text-[11px]'>
               <p>Loremname</p>
               <p className='text-gray-300'>Untitled</p>
