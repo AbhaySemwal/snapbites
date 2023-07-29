@@ -4,11 +4,11 @@ import Blogpost from "@/models/Blogpost"
 
 export const GET = async (request) => {
     const url = new URL(request.url);
-    const name = url.searchParams.get("name");
+    const displayName = url.searchParams.get("displayName");
     try {
       await connect();
   
-      const blogposts = await Blogpost.find(name && { name });
+      const blogposts = await Blogpost.find(displayName && { displayName });
   
       return new NextResponse(JSON.stringify(blogposts), { status: 200 });
     } catch (err) {

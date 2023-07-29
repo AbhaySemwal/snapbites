@@ -27,15 +27,30 @@ export const GET = async (request) => {
     const url = new URL(request.url);
   
     const name = url.searchParams.get("name");
-  
-    try {
-      await connect();
-  
-      const blogpage = await Blogpage.find(name && { name });
-  
-      return new NextResponse(JSON.stringify(blogpage), { status: 200 });
-    } catch (err) {
-      return new NextResponse("Database Error", { status: 500 });
+    if(name)
+    {
+        try {
+          await connect();
+      
+          const blogpage = await Blogpage.find(name && { name });
+      
+          return new NextResponse(JSON.stringify(blogpage), { status: 200 });
+        } catch (err) {
+          return new NextResponse("Database Error", { status: 500 });
+        }
+    }
+    else
+    {
+        const displayName = url.searchParams.get("displayName");
+        try {
+            await connect();
+        
+            const blogpage = await Blogpage.find(displayName && { displayName });
+        
+            return new NextResponse(JSON.stringify(blogpage), { status: 200 });
+          } catch (err) {
+            return new NextResponse("Database Error", { status: 500 });
+          }
     }
 };
 
