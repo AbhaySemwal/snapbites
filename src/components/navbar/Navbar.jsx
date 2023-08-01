@@ -9,45 +9,7 @@ import InfoModal from '../modals/infomodal/InfoModal';
 import AccountModal from '../modals/accountmodal/AccountModal';
 import NewPostModal from "../modals/newpostmodal/NewPostModal"
 
-// const icons=[
-//     {
-//         id:1,
-//         link:"/",
-//         text:<Home/>,
-//     },
-//     {
-//         id:2,
-//         link:"/explore",
-//         text:<Explore/>,
-//     },
-//     {
-//         id:3,
-//         link:"/store",
-//         text:<Storefront/>,
-//     },
-//     {
-//         id:4,
-//         link:"/email",
-//         text:<Email/>,
-//     },
-//     {
-//         id:5,
-//         link:"/emoji",
-//         text:<EmojiEmotions/>,
-//     },
-//     {
-//         id:6,
-//         link:"/info",
-//         text:<Bolt/>,
-//     },
-//     {
-//         id:7,
-//         link:"/new",
-//         text:<Person/>,
-//     },
-// ]
-
-const Navbar = () => {
+const Navbar = ({fixed}) => {
 
 const [storeClicked,setStoreClicked]=useState(false);
 const [botClicked,setBotClicked]=useState(false);
@@ -83,10 +45,15 @@ useEffect(() => {
     document.removeEventListener('click', handleClickOutside);
   };
 }, []);
+
+useEffect(() => {
+    document.body.style.overflow = newClicked ? "hidden" : "unset";
+}, [newClicked]);
+
 const path=usePathname();
 
   return (
-    <nav className='text-white flex h-[55px] px-5 items-center justify-between font-montserrat border-gray-800 border-b-[1px]'>
+    <nav className={`text-white z-40 w-full flex h-[55px] px-5 items-center justify-between font-montserrat border-gray-800 border-b-[1px] ${fixed?"fixed top-0 bg-black" :""}`}>
         <div className='w-[50%] flex items-center gap-5'>
             <Link href="/" ><p className="font-bold hover:-rotate-12 text-red-400 hover:text-blue-400 cursor-pointer transition delay-100 ease-in-out hover:transform text-3xl">SB</p></Link>
             <div className='flex h-[35px] bg-[#514949] items-center w-[60%] px-2 rounded-md gap-1'>
@@ -116,8 +83,10 @@ const path=usePathname();
                 {accountClicked&&<AccountModal />}
             </div>
             <div ref={componentRef4} className={`cursor-pointer transform scale-[1.20] text-black px-2 py-0.5 bg-blue-400 rounded-md`}>
+                {/* <Link href='/new'> */}
                 <Create onClick={()=>{setNewClicked(!newClicked)}} />
-                {newClicked&&<NewPostModal/>}
+                {newClicked&&<NewPostModal setNewClicked={setNewClicked}/>}
+                {/* </Link> */}
             </div>
         </div>
     </nav>
