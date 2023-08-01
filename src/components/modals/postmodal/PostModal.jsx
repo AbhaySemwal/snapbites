@@ -85,10 +85,10 @@ console.log()
               image,
               name: session.data.user.name,
               displayName:blogpage[0]?.displayName,
+              userId:blogpage[0]?._id,
+              userProfile:blogpage[0]?.profilePicture,
             }),
           }); 
-          // mutate();
-          // e.target.reset();
         }
         catch(err){
           console.log(err)

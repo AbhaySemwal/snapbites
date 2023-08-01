@@ -25,7 +25,8 @@ const Auth = () => {
               name,email,displayName,
             })
           });
-          r.status
+          r.status==200&&r.json("User created");
+          console.log("User Created")
         }catch(err){
           setErr(true);
         }  

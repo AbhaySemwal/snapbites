@@ -55,7 +55,7 @@ const Today = () => {
         data?.map(d=>(
         <div key={d.id} className='w-[70%] gap-5 flex mb-5'>
           <div className='w-[10%] h-full'>
-              <Image className= "cursor-pointer rounded-md" src={d.img} width={75} height={75} alt=''></Image>
+              <Image className= "sticky top-0 cursor-pointer rounded-md" src={d.img} width={75} height={75} alt=''></Image>
           </div>
           <div className='w-[90%] flex flex-col '>
               <div className='flex flex-col cursor-pointer '>
