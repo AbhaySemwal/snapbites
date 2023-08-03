@@ -26,23 +26,46 @@ const blogpostSchema = new Schema(
       type:String,
       required:true,
     },
-    likes:{
-      type:Array,
-      default:[]
-    },
+    likes:[
+        {
+          _id:{
+            type:String,
+            unique:true,
+            required:true
+          },
+          displayName:{
+            type:String,
+            unique:true,
+            required:true
+          },
+          profilePicture:{
+            type:String,
+            unique:true,
+            required:true
+          },
+        }
+      ],
     comments:[
       {
-        accountName:{
-          type:String
+        userId:{
+          type:String,
+          required:true
         },
-        userProfile:{
-          type:String
+        displayName:{
+          type:String,
+          required:true
+        },
+        profilePicture:{
+          type:String,
+          required:true
         },
         text:{
-          type:String
+          type:String,
+          required:true
         }
-      }
-    ]
+      },
+    ],
+    
   },
   { timestamps: true }
 );

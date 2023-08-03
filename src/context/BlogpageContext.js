@@ -19,7 +19,8 @@ const BlogpageContextProvider=({children})=>{
     setBlogpage(x);
    }
    getData();
-  },[session.data?.user]);
+  },[session?.data?.user]);
+  
     return(
     <BlogpageContext.Provider value={{blogpage}}>
         {children}

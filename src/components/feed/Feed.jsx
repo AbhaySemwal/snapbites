@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Post from '../post/Post';
 import Topbar from '../topbar/Topbar';
-
+import { BlogpageContext } from '@/context/BlogpageContext';
 
 const Feed = () => {
  
   const [data,setData]=useState([]);
   const [loading,setLoading]=useState(false);
+  const blogpage=useContext(BlogpageContext).blogpage[0];
   
 
   useEffect(()=>{
@@ -32,7 +33,7 @@ const Feed = () => {
         <Topbar/>
         {loading?<p className='w-[70%] flex justify-center mt-10'>Loading...</p>:
           data?.map(d=>(
-            <Post key={d._id} d={d}/>
+            <Post key={d?._id} blogpage={blogpage} d={d}/>
           ))
         }
       </div>
