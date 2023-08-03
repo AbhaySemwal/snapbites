@@ -49,7 +49,7 @@ const Id = ({params}) => {
   const [loading,setLoading]=useState(true);
   const [followed,setFollowed]=useState(false)
   useEffect(()=>{
-    setFollowed(blogpage[0]?.following.includes(bp._id))
+    setFollowed(blogpage[0]?.following?.includes(bp._id))
   },[bp]);
   useEffect(()=>{
     const getUser=async()=>{
@@ -103,6 +103,9 @@ const Id = ({params}) => {
           })
         });
           setFollowed(false);
+          blogpage[0] = blogpage[0]?.following?.filter(function(item) {
+            return item !== userId
+        })
       }catch(err){
         setErr(true);
       }
@@ -119,7 +122,8 @@ const Id = ({params}) => {
             id:blogpage[0]._id
           })
         });
-        setFollowed(true)
+        setFollowed(true);
+        blogpage?.following?.push(d?.userId);
       }catch(err){
         setErr(true);
       }
