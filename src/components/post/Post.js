@@ -10,6 +10,7 @@ import { Close } from '@mui/icons-material';
 
 
 const Post = ({d,blogpage}) => {
+
     const [err,setErr]=useState(false);
     const [likes,setLikes]=useState(d?.likes);
     const [liked,setLiked]=useState(false);
@@ -21,12 +22,15 @@ const Post = ({d,blogpage}) => {
         setLiked(true);
       });
     },[blogpage,d]);
-    console.log(liked)
+
     useEffect(()=>{
         setFollowed(blogpage?.following?.includes(d?.userId))
     },[d]);
+
     const handleFollow=async(d)=>{
         try{
+          setFollowed(true);
+          blogpage?.following?.push(d?.userId);
           const res=await fetch(`http://localhost:3000/api/blogpage/follow/${d?.userId}`,{
             method:"PUT",
             headers:{
@@ -36,8 +40,6 @@ const Post = ({d,blogpage}) => {
               id:blogpage?._id
             })
           });
-         setFollowed(true);
-         blogpage?.following?.push(d?.userId);
         }catch(err){
           setErr(true);
         }
@@ -76,7 +78,7 @@ const Post = ({d,blogpage}) => {
         }catch(err){
           setErr(true);
         }
-    }
+      }
       const [clicked,setClicked]=useState(false);
       const [commentclicked,setCommentClicked]=useState(true);
       const [likesclicked,setLikesClicked]=useState(false);
@@ -153,7 +155,7 @@ const Post = ({d,blogpage}) => {
               <p className=''>{d?.desc}</p>
             </div>
             <div className='w-full flex justify-between items-center py-4'>
-              {!clicked?<button onClick={handleNotes} className='border-[1px] border-gray-500 rounded-full flex items-end py-1 px-2 gap-1'><p className='font-[400]'>{comments.length}</p><p className='text-base text-gray-400'>notes</p></button>:
+              {!clicked?<button onClick={handleNotes} className='border-[1px] border-gray-500 rounded-full flex items-end py-1 px-2 gap-1'><p className='font-[400]'>{comments?.length}</p><p className='text-base text-gray-400'>notes</p></button>:
               <button onClick={handleNotes} className='text-gray-300 bg-[#4f4e4e] rounded-full flex items-center py-1 px-2 gap-0.5'><Close fontSize='small'/><p className='font-[400]'>Close</p><p className='text-base'>notes</p></button>}
               <div className='flex gap-5 items-center'>
                 <ShareIcon fontSize='medium' className='text-blue-300'/>
@@ -186,7 +188,7 @@ const Post = ({d,blogpage}) => {
                     <div key={comment._id} className='flex w-fit max-w-[90%] gap-2 my-3 px-5'>
                       <Image className='h-8 w-8 rounded-full' src={comment?.profilePicture} width={1000} height={1000} alt=''></Image>
                       <div className='border-[1px] border-gray-700 rounded-lg p-2 h-fit'>
-                        <h1 className='mb-1.5 text-xs font-semibold'>{comment?.displayName}</h1>
+                        <Link href={"/"+comment?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{comment?.displayName}</h1></Link>
                         <p className='text-sm'>{comment?.text}</p>
                       </div>
                     </div>
@@ -202,7 +204,7 @@ const Post = ({d,blogpage}) => {
                     likes?.map((user)=>(
                       <div key={user._id} className='flex w-fit items-center max-w-[90%] gap-2 my-3 px-5'>
                       <Image className='h-8 w-8 rounded-full' src={user?.profilePicture} width={1000} height={1000}alt=''></Image>
-                        <h1 className='mb-1.5 text-xs font-semibold'>{user?.displayName}</h1>
+                        <Link href={"/"+user?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{user?.displayName}</h1></Link>
                     </div>
                     )):
                       <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
