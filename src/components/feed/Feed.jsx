@@ -23,10 +23,11 @@ const Feed = () => {
     setData(x.sort((p1,p2)=>{
       return new Date(p2.createdAt)-new Date(p1.createdAt);
     }));
+    if(blogpage)
     setLoading(false);
    }
    getData()
-  },[]);
+  },[blogpage]);
 
   return (
       <div className='w-full flex flex-col items-end font-sans'>

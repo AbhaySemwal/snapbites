@@ -51,6 +51,7 @@ const Id = ({params}) => {
   useEffect(()=>{
     setFollowed(blogpage[0]?.following?.includes(bp._id))
   },[bp]);
+  
   useEffect(()=>{
     const getUser=async()=>{
       setLoading(true);
@@ -93,19 +94,19 @@ const Id = ({params}) => {
     if(followed)
     {
       try{
+        setFollowed(false);
+         blogpage[0]?.following?.filter(function(item) {
+          return item !== userId
+      })
         const res=await fetch(`http://localhost:3000/api/blogpage/unfollow/${userId}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",
           },
           body:JSON.stringify({
-            id:blogpage[0]._id
+            id:blogpage[0]?._id
           })
         });
-          setFollowed(false);
-          blogpage[0] = blogpage[0]?.following?.filter(function(item) {
-            return item !== userId
-        })
       }catch(err){
         setErr(true);
       }
@@ -113,17 +114,17 @@ const Id = ({params}) => {
     else
     {
       try{
+        setFollowed(true);
+        blogpage?.following?.push(d?.userId);
         const res=await fetch(`http://localhost:3000/api/blogpage/follow/${userId}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",
           },
           body:JSON.stringify({
-            id:blogpage[0]._id
+            id:blogpage[0]?._id
           })
         });
-        setFollowed(true);
-        blogpage?.following?.push(d?.userId);
       }catch(err){
         setErr(true);
       }
@@ -147,7 +148,7 @@ const Id = ({params}) => {
               <div className='flex justify-center w-full mb-10'>
                 <div className='flex justify-between gap-2 items-center'>
                   <button className='bg-amber-900 text-white rounded-full px-3 py-2 text-base font-medium'>Ask me anything</button>
-                  {bp?.displayName!==blogpage[0]?.displayName&&<button className='bg-amber-900 text-white rounded-full px-3 py-2 text-base font-medium' onClick={()=>handleFollow(bp._id)}>{followed?"Unfollow":"Follow"}</button>}
+                  {bp?.displayName!==blogpage[0]?.displayName&&<button className='bg-amber-900 text-white rounded-full px-3 py-2 text-base font-medium' onClick={()=>handleFollow(bp?._id)}>{followed?"Unfollow":"Follow"}</button>}
                   <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><RedeemIcon/></button>
                   <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><AddCommentOutlined/></button>
                   <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><MoreHorizIcon/></button>

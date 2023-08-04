@@ -6,7 +6,6 @@ import Rightbar from "@/components/rightbar/Rightbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import PostModal from "@/components/modals/postmodal/PostModal"
 
 const Home = () => {
   const session=useSession();

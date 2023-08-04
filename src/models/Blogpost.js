@@ -30,17 +30,14 @@ const blogpostSchema = new Schema(
         {
           _id:{
             type:String,
-            unique:true,
             required:true
           },
           displayName:{
             type:String,
-            unique:true,
             required:true
           },
           profilePicture:{
             type:String,
-            unique:true,
             required:true
           },
         }
