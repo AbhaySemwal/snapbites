@@ -19,32 +19,32 @@ return (
             <Image className='cursor-pointer rounded-md' src="/pyramid_closed_96.png" width={75} height={75} alt=''></Image>
         </div>
         <div className='w-[90%] cursor-pointer rounded-sm px-5 flex justify-between items-center h-[100px] bg-[#272424]'>
-            <div className='group flex flex-col items-center' onClick={()=>setOpen(!open)}>
-                <p className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-4xl font-bold'>Aa</p>
+            <div className='group flex flex-col items-center mb-[2.5px]' onClick={()=>setOpen(!open)}>
+                <p className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-3xl font-bold'>Aa</p>
                 <p>Text</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <CameraAltIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-red-600 text-4xl font-bold'/>
+                <CameraAltIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-red-600 font-bold'/>
                 <p>Photo</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <FormatQuoteIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-orange-500 text-4xl font-bold'/>
+                <FormatQuoteIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-orange-500 font-bold'/>
                 <p>Qoute</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <LinkIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-green-500 text-4xl font-bold'/>
+                <LinkIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-green-500 font-bold'/>
                 <p>Link</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <ChatIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-blue-400 text-4xl font-bold'/>
+                <ChatIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-blue-400 font-bold'/>
                 <p>Chat</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <HeadphonesIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-blue-700 text-4xl font-bold'/>
+                <HeadphonesIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-blue-700 font-bold'/>
                 <p>Audio</p>
             </div>
             <div className='group flex flex-col items-center'>
-                <VideocamIcon className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-pink-500 text-4xl font-bold'/>
+                <VideocamIcon fontSize='large' className='group-hover:-translate-y-1 ease-in-out transition-all duration-400 text-pink-500 font-bold'/>
                 <p>Video</p>
             </div>
         </div>

@@ -1,91 +1,38 @@
-import React from 'react'
-import Image from 'next/image'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import ShareIcon from '@mui/icons-material/Share';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+"use client"
+import React, { useContext,useState,useEffect } from 'react'
+import Post from '@/components/post/Post';
+import { BlogpageContext } from '@/context/BlogpageContext';
 
-const data=[
-    {
-      id:1,
-      img:"/pyramid_closed_96.png",
-      postimg:"/cropped-1920-1080-1314003.png",
-      desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-      name:"Joy",
-      notes:"100"
-    },
-    {
-      id:2,
-      img:"/pyramid_closed_96.png",
-      postimg:"/cropped-1920-1080-1314003.png",
-      desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-      name:"Joy",
-      notes:"100"
-    },
-    {
-      id:3,
-      img:"/pyramid_closed_96.png",
-      postimg:"/cropped-1920-1080-1314003.png",
-      desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-      name:"Joy",
-      notes:"100"
-    },
-    {
-      id:4,
-      img:"/pyramid_closed_96.png",
-      postimg:"/cropped-1920-1080-1314003.png",
-      desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-      name:"Joy",
-      notes:"100"
-    },
-    {
-      id:5,
-      img:"/pyramid_closed_96.png",
-      postimg:"/cropped-1920-1080-1314003.png",
-      desc:"Glasswinged butterflies are a South American species known for their transparent wings",
-      name:"Joy",
-      notes:"100"
-    },
-  ]
 const Today = () => {
+  const [data,setData]=useState([]);
+  const [loading,setLoading]=useState(false);
+  const blogpage=useContext(BlogpageContext).blogpage[0];
+  
+
+  useEffect(()=>{
+   const getData=async()=>{
+    setLoading(true);
+    const res=await fetch("http://localhost:3000/api/blogpost",{
+    // next:{revalidate:10}
+    cache:"no-store",
+    });
+    if(!res.ok)
+    throw new Error("Failed to fetch data");
+    const x=await res.json();
+    setData(x.sort((p1,p2)=>{
+      return new Date(p2.createdAt)-new Date(p1.createdAt);
+    }));
+    if(blogpage)
+    setLoading(false);
+   }
+   getData()
+  },[blogpage]);
+
   return (
     <>
-
-    {
-        data?.map(d=>(
-        <div key={d.id} className='w-[70%] gap-5 flex mb-5'>
-          <div className='w-[10%] h-full'>
-              <Image className= "sticky top-0 cursor-pointer rounded-md" src={d.img} width={75} height={75} alt=''></Image>
-          </div>
-          <div className='w-[90%] flex flex-col '>
-              <div className='flex flex-col cursor-pointer '>
-                <div className='h-[60px] bg-[#272424] flex items-center px-5 rounded-t-sm justify-between'>
-                  <div className='text-sm font-semibold flex gap-2'>
-                    <p>{d.name}</p>
-                    <p className='text-blue-500 hover:underline'>Follow</p>
-                  </div>
-                  <div className='text-gray-500 cursor-pointer'><MoreHorizIcon/></div>
-                </div>
-                <div className='relative min-h-[500px] max-h-[600px] '>
-                  <Image className='object-cover' src={d.postimg} fill={true} alt=''></Image>
-                </div>
-                <div className='h-fit py-3 px-5 bg-[#272424] flex flex-col items-center rounded-b-sm justify-between'>
-                  <div className='text-sm font-semibold flex border-gray-600 border-b-[1px] gap-2 py-3'>
-                    <p className=''>{d.desc}</p>
-                  </div>
-                  <div className='w-full flex justify-between items-center py-3'>
-                    <button className='border-[1px] border-gray-500 rounded-full flex items-end py-1.5 px-3 gap-1'><p className='font-[400]'>{d.notes}</p><p className='text-base text-gray-400'>notes</p></button>
-                    <div className='flex gap-5 items-center'>
-                      <ShareIcon className='text-blue-300 transform scale-110'/>
-                      <ChatBubbleOutlineIcon className='text-green-400 transform scale-110'/>
-                      <FavoriteBorderIcon className='text-red-400 transform scale-110'
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
+    {loading?<p className='flex w-[70%] justify-center'>Loading...</p>:
+        data?.map(d=>(        
+          <Post key={d?._id} blogpage={blogpage} d={d}/>
         ))
       }
     </>
