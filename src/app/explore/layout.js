@@ -1,62 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useContext,useState,useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image';
-import CloseIcon from '@mui/icons-material/Close';
 import { usePathname, useRouter } from 'next/navigation';
 import Navbar from '@/components/navbar/Navbar';
 import { useSession } from 'next-auth/react';
-
-const data1=[
-  {
-    id:1,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:2,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:3,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:4,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:4,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:4,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:4,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-  {
-    id:4,
-    name:"anxietyproblem",
-    desc:"Anxiety Problem",
-    img:"/cropped-1920-1080-1314003.png",
-  },
-]
+import ExploreCheckout from '@/components/exploreCheckout/ExploreCheckout';
+import { BlogpageContext } from '@/context/BlogpageContext';
 
 const Explore = ({children}) => {
 
@@ -65,6 +14,29 @@ const Explore = ({children}) => {
   if(session.status==="unauthenticated")
   router?.push("/login")
   const pathname=usePathname();
+  const blogpage=useContext(BlogpageContext).blogpage[0];
+  const [loading,setLoading]=useState(false);
+
+  const [checkout, setCheckout]=useState([]);
+  useEffect(()=>{
+    const getData=async()=>{
+      setLoading(true);
+    const res=await fetch("http://localhost:3000/api/blogpage",{
+      // next:{revalidate:10}
+    cache:"no-store",
+  });
+    if(!res.ok)
+    throw new Error("Failed to fetch data");
+    const x=await res.json();
+    const y=x?.filter((i)=>{
+      return (((!blogpage?.following?.includes(i?._id))&&(blogpage?._id!==i?._id)));
+    })
+    setCheckout(y);
+    if(blogpage)
+    setLoading(false);
+    }
+    getData();
+  },[blogpage]);
   return (
     <>
       <Navbar/>
@@ -90,21 +62,9 @@ const Explore = ({children}) => {
                 <h2 className='text-lg font-semibold'>Check out these blogs</h2>
               </div>
               <div className='px-2 border-gray-700 border-b-[1px]'>
-                {
-                  data1.slice(0,4).map(d=>(
-                    <div key={d.id} className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#393838]'>
-                      <div className='flex items-center gap-3'>
-                        <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d.img} alt='' height={32} width={32}/>
-                        <div className='text-sm font-semibold'>
-                          <p>{d.name}</p>
-                          <p className='font-normal text-gray-400'>{d.desc}</p>
-                        </div>
-                      </div>
-                      <div className='flex items-center text-sm  gap-3'>
-                          <p className='text-blue-400'>Follow</p>
-                          <CloseIcon className='text-gray-500' fontSize='20'/>
-                      </div>
-                    </div>
+                {loading?<p className='my-2'>Loading...</p>:
+                  checkout.slice(0,4).map(d=>(
+                    <ExploreCheckout d={d} blogpage={blogpage} checkout={checkout} setCheckout={setCheckout}/>
                   ))
                 }
               </div>

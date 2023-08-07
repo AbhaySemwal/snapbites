@@ -19,7 +19,13 @@ const Today = () => {
     if(!res.ok)
     throw new Error("Failed to fetch data");
     const x=await res.json();
-    setData(x.sort((p1,p2)=>{
+    const today=new Date()
+    const date = today.getFullYear() + '-' +((today.getMonth() + 1)<10?('0'+(today.getMonth()+1)):(today.getMonth()+1)) + '-' + ((today.getDate()<10)?('0'+today.getDate()):today.getDate());
+    const y=x.filter(i=>{
+      return (((i.createdAt).toString().substr(0,10))===date);
+    })
+    
+    setData(y.sort((p1,p2)=>{
       return new Date(p2.createdAt)-new Date(p1.createdAt);
     }));
     if(blogpage)
@@ -27,7 +33,6 @@ const Today = () => {
    }
    getData()
   },[blogpage]);
-
   return (
     <>
     {loading?<p className='flex w-[70%] justify-center'>Loading...</p>:
