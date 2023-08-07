@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Close } from '@mui/icons-material';
 import Image from 'next/image';
 
-const Checkout = ({d,checkout,setCheckout,blogpage}) => {
+const ExploreCheckout = ({d,checkout,setCheckout,blogpage}) => {
     const [followed,setFollowed]=useState(false);
     useEffect(()=>{
         setFollowed(blogpage?.following?.includes(d?.userId))
@@ -28,7 +28,7 @@ const Checkout = ({d,checkout,setCheckout,blogpage}) => {
     }
 
   return (
-    <div className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#0e0e0e]'>
+    <div className='flex p-2 justify-between items-center h-[60px] cursor-pointer hover:bg-[#393838]'>
     <Link href={"/"+d?.displayName} ><div className='flex items-center gap-3'>
         <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d?.profilePicture} alt='' height={1000} width={1000}/>
         <div className='text-sm font-semibold'>
@@ -37,7 +37,7 @@ const Checkout = ({d,checkout,setCheckout,blogpage}) => {
         </div>
         </div></Link>
         <div className='flex items-center text-sm  gap-3'>
-        {d?.displayName!==blogpage?.displayName&&<p className='text-blue-500 hover:underline' onClick={()=>handleFollow(d)}>{!followed&&"Follow"}</p>}
+        {d?.displayName!==blogpage?.displayName&&<p className='text-blue-500 hover:underline' onClick={()=>handleFollow(d)}>{!followed&&"follow"}</p>}
             <Close onClick={()=>{
             setCheckout(checkout.filter((i)=>{
                 return(d._id!==i._id)
@@ -47,5 +47,4 @@ const Checkout = ({d,checkout,setCheckout,blogpage}) => {
     </div>
   )
 }
-
-export default Checkout
+export default ExploreCheckout

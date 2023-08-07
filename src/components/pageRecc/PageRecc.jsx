@@ -36,7 +36,7 @@ const pageRecc = ({d,checkout,setCheckout,blogpage}) => {
         </div>
         </div>
         <div className='flex items-center text-sm  gap-3'>
-            <p className='text-amber-900 font-medium hover:underline' onClick={()=>handleFollow(d)}>{!followed&&"follow"}</p>
+            <p className='text-amber-900 font-medium hover:underline' onClick={()=>handleFollow(d)}>{!followed&&"Follow"}</p>
             <Close onClick={()=>{
             setCheckout(checkout.filter((i)=>{
                 return(d._id!==i._id)
