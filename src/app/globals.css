@@ -3,36 +3,206 @@
 @tailwind utilities;
 
 .scrollbar::-webkit-scrollbar {
-    width: 3px;
-    }
-        
-    .scrollbar::-webkit-scrollbar-track { 
-    background: #f6f2f2;
-    
-    }
-    
-    .scrollbar::-webkit-scrollbar-thumb { 
-    background:#7f7f7f;
-    border-radius: 3px ;
-    }
-    @keyframes rotate-left {
-        0% {
-          transform: rotate(-20deg);
-        }
-        100% {
-          transform: rotate(0deg);
-        }
+  width: 3px;
+  }
+      
+  .scrollbar::-webkit-scrollbar-track { 
+  background: #f6f2f2;
+  
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb { 
+  background:#7f7f7f;
+  border-radius: 3px ;
+  }
+  @keyframes rotate-left {
+      0% {
+        transform: rotate(-20deg);
       }
-    
-      @keyframes rotate-right {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(20deg);
-        }
+      100% {
+        transform: rotate(0deg);
       }
-    
-      .hover\:rotate-left-right:hover {
-        animation: rotate-left 0.3s ease-in-out infinite alternate, rotate-right 0.3s ease-in-out infinite alternate;
+    }
+  
+    @keyframes rotate-right {
+      0% {
+        transform: rotate(0deg);
       }
+      100% {
+        transform: rotate(20deg);
+      }
+    }
+  
+    .hover\:rotate-left-right:hover {
+      animation: rotate-left 0.3s ease-in-out infinite alternate, rotate-right 0.3s ease-in-out infinite alternate;
+    }
+
+    .theme0 .bg1{
+      background-color:#9fc6bd;
+    }
+    .theme0 .bg2{
+      background-color:#e8d2e1;
+    }
+    
+    .theme0 .bg2hover:hover{
+      background-color:#d8c8d3;
+    }
+    .theme0 .buttonbg{
+      background-color:#801d1d;
+    }
+    .theme0 .displayname{
+      color:#801d1d;
+    }
+    .theme0 .follow{
+      color:#801d1d;
+    }
+    .theme0 .desc{
+      color:#801d1d;
+    }
+    .theme0 .name{
+      color:#801d1d;
+    }
+    .theme0 .othertext{
+      color: #801d1d;
+    }
+    .theme0 .borderpost{
+      border-color: #801d1d;
+    }
+    .theme0 .reccdisplayname{
+      color: #000;
+    }
+
+
+    .theme1 .bg1{
+      background-color:#272424;
+    }
+    .theme1 .bg2{
+      background-color:#000;
+    }
+    .theme1 .bg2hover:hover{
+      background-color:#1f1f1f;
+    }
+    .theme1 .buttonbg{
+      background-color:#988989;
+    }
+    .theme1 .displayname{
+      color:#988989;
+    }
+    .theme1 .follow{
+      color:#988989;
+    }
+    .theme1 .desc{
+      color:#fff;
+    }
+    .theme1 .name{
+      color:#fff;
+    }
+    .theme1 .othertext{
+      color: #fff;
+    }
+    .theme1 .borderpost{
+      border-color: #988989;
+    }
+    
+    .theme2 .bg1{
+      background-color:#272424;
+    }
+    .theme2 .bg2{
+      background-color:#171c18;
+    }
+    .theme2 .bg2hover:hover{
+      background-color:#2a332c;
+    }
+    .theme2 .buttonbg{
+      background-color:#9cc52b;
+    }
+    .theme2 .displayname{
+      color:#9cc52b;
+    }
+    .theme2 .follow{
+      color:#9cc52b;
+    }
+    .theme2 .desc{
+      color:#C3BE37;
+    }
+    .theme2 .name{
+      color:#C3BE37;
+    }
+    .theme2 .othertext{
+      color: #fff;
+    }
+    .theme2 .borderpost{
+      border-color: #9cc52b;
+    }    
+    .theme2 .reccdisplayname{
+      color: #fff;
+    }    
+
+    .theme3 .bg1{
+      background-color:#272424;
+    }
+    .theme3 .bg2{
+      background-color:#000;
+    }
+    .theme3 .bg2hover:hover{
+      background-color:#1f1f1f;
+    }
+    .theme3 .buttonbg{
+      background-color:#641c8e;
+    }
+    .theme3 .displayname{
+      color:#641c8e;
+    }
+    .theme3 .follow{
+      color:#641c8e;
+    }
+    .theme3 .desc{
+      color:#fff;
+    }
+    .theme3 .name{
+      color:#fff;
+    }
+    .theme3 .othertext{
+      color: #fff;
+    }
+    .theme3 .borderpost{
+      border-color: #641c8e;
+    }
+    .theme3 .reccdisplayname{
+      color: #fff;
+    }
+
+    .theme4 .bg1{
+      background-color:#6ebab0;
+    }
+    .theme4 .bg2{
+      background-color:#92d1c8;
+    }
+    .theme4 .bg2hover:hover{
+      background-color:#7caea7;
+    }
+    .theme4 .buttonbg{
+      background-color:#388a5a;
+    }
+    .theme4 .displayname{
+      color:#388a5a;
+    }
+    .theme4 .follow{
+      color:#388a5a;
+    }
+    .theme4 .desc{
+      color:#286341;
+    }
+    .theme4 .name{
+      color:#286341;
+    }
+    .theme4 .othertext{
+      color: #000;
+    }
+    .theme4 .borderpost{
+      border-color: #388a5a;
+    }
+    .theme4 .reccdisplayname{
+      color: #000;
+    }
+      
