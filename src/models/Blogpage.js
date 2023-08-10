@@ -39,6 +39,10 @@ const blogPageSchema = new Schema(
         max:50,
         default:""
     },
+    theme:{
+      type:String,
+      default:"0",
+    }
   },
   { timestamps: true }
 );

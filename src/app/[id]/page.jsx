@@ -80,6 +80,7 @@ const Id = ({params}) => {
         setLoading(false)
         setBp(x[0]);
       }
+      
       const getUserPosts=async()=>{
         setLoading(true);
         const res=await fetch(`http://localhost:3000/api/blogpost?displayName=${params.id}`,{
@@ -161,32 +162,33 @@ const Id = ({params}) => {
       }
     }
   }
+  
   return (
     <div className='text-white font-sans'>
         <Navbar fixed={true}/>
-        <div className='flex flex-col items-center mt-16 '>
-            {loading?<p>Loading...</p>:<div className='bg-[#9fc6bd] flex gap-5 w-[65%] rounded-md p-5'>
-            <div className='w-[63%] rounded-md bg-[#e8d2e1]'>
-                <Image className='relative rounded-t-md w-full h-[325px] object-cover' src={bp?.coverPicture} height={1000} width={1000} alt=''></Image>
-                <Image className='absolute border-4 border-solid top-[360px] left-[35%] rounded-full h-[100px] w-[100px] object-cover' src={bp?.profilePicture} height={100} width={1000} alt=''></Image>
+        <div className={`theme${bp?.theme} flex flex-col items-center mt-16`}>
+            {loading?<p>Loading...</p>:<div className={`bg1 flex gap-5 w-[65%] rounded-md p-5`}>
+            <div className={`w-[63%] rounded-md bg2`}>
+                <Image className='relative rounded-t-md w-full h-[325px] object-cover' src={bp?.coverPicture?bp?.coverPicture:"/cropped-1920-1080-1314003.png"} height={1000} width={1000} alt=''></Image>
+                <Image className='absolute border-4 border-solid top-[360px] left-[35%] rounded-full h-[100px] w-[100px] object-cover' src={bp?.profilePicture?bp?.profilePicture:"/pyramid_closed_96.png"} height={100} width={1000} alt=''></Image>
               <div className='flex flex-col items-center justify-center mt-12 gap-2 text-amber-900'>
-                <h3 className='text-2xl font-semibold'>{bp?.name}</h3>
-                <Link href={"/"+bp?.displayName}><h4 className='text-base font-medium'>@{bp?.displayName}</h4></Link>
+                <h3 className={`text-2xl font-semibold name`} >{bp?.name}</h3>
+                <Link href={"/"+bp?.displayName}><h4 className={`text-base font-medium displayname`}>@{bp?.displayName}</h4></Link>
               </div>
               <div>
-                <p className='text-center px-12 font-medium text-amber-900 text-sm my-5'>{bp?.desc}</p>
+                <p className={`text-center px-12 font-medium text-sm my-5 desc`}>{bp?.desc}</p>
               </div>
               <div className='flex justify-center w-full mb-10'>
                 <div className='flex justify-between gap-2 items-center'>
-                  <button className='bg-amber-900 text-white rounded-full px-3 py-2 text-base font-medium'>Ask me anything</button>
-                  {bp?.displayName!==blogpage[0]?.displayName&&<button className='bg-amber-900 text-white rounded-full px-3 py-2 text-base font-medium' onClick={()=>handleFollow(bp?._id)}>{followed?"Following":"Follow"}</button>}
-                  <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><RedeemIcon/></button>
-                  <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><AddCommentOutlined/></button>
-                  <button className='border-[2px] rounded-full border-gray-400 text-amber-900 p-1'><MoreHorizIcon/></button>
+                  <button className={`buttonbg text-white rounded-full px-3 py-2 text-base font-medium`}>Ask me anything</button>
+                  {bp?.displayName!==blogpage[0]?.displayName&&<button className='buttonbg text-white rounded-full px-3 py-2 text-base font-medium' onClick={()=>handleFollow(bp?._id)}>{followed?"Following":"Follow"}</button>}
+                  <button className={`border-[2px] rounded-full border-gray-400 p-1 desc`}><RedeemIcon/></button>
+                  <button className={`border-[2px] rounded-full border-gray-400 desc p-1`}><AddCommentOutlined/></button>
+                  <button className={`border-[2px] rounded-full border-gray-400 desc p-1`}><MoreHorizIcon/></button>
                 </div>
               </div>
               <div className='w-full flex flex-col px-5'>
-                <div className='border-b-[1px] border-amber-900 w-full mb-5'><span className='text-amber-900 font-semibold border-b-[2px] px-2 border-amber-900'>Posts</span></div>
+                <div className={`border-b-[1px] borderpost w-full mb-5`}><span className={`displayname borderpost font-semibold border-b-[2px] px-2`}>Posts</span></div>
                 {
                   data?.map(d=>(
                         <PagePost d={d} bp={bp} blogpage={blogpage[0]} followed={followed} handleFollow={handleFollow}/>
@@ -195,23 +197,23 @@ const Id = ({params}) => {
               </div>
             </div>
             <div className='w-[35%] '>
-              <div className='bg-[#e8d2e1] rounded-md text-black'>
+              <div className={`bg2 rounded-md text-black`}>
                   <div className='border-slate-200 border-b-[1px] py-2.5 px-4 mb-3 flex '>
-                    <h2 className='text-xl font-semibold'>Blogs like this one</h2>
+                    <h2 className={`othertext text-xl font-semibold`}>Blogs like this one</h2>
                   </div>
                   <div>
                     {
                       checkout.slice(0,4).map(d=>(
-                        <PageRecc d={d} blogpage={blogpage} checkout={checkout} setCheckout={setCheckout}/>
+                        <PageRecc d={d} blogpage={blogpage} bp={bp} checkout={checkout} setCheckout={setCheckout}/>
                       ))
                     }
                     <div className='my-5 rounded-b-md border-t-slate-200 border-[1px] p-2 text-base flex justify-center items-center'>
-                  <Link className='text-amber-900 font-medium hover:underline' href="/explore/today">Show more Blogs</Link>
+                  <Link className={`displayname font-medium hover:underline`} href="/explore/today">Show more Blogs</Link>
                 </div>
                 </div>
               </div>
               <div>
-                <div className='border-slate-200 border-b-[1px] py-2 mb-5'><span className='text-black text-xl font-medium'>More like this</span></div>
+                <div className='border-slate-200 border-b-[1px] py-2 mb-5'><span className={`othertext text-xl font-medium`}>More like this</span></div>
                 <div className='flex flex-wrap gap-[2px] rounded-lg overflow-hidden'>
                     {
                       data1.map(d=>(

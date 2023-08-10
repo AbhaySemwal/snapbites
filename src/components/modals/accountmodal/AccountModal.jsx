@@ -1,11 +1,15 @@
+"use client"
+import { BlogpageContext } from '@/context/BlogpageContext';
 import { Favorite,HelpOutlineRounded, Redeem, Settings, StarBorderOutlined } from '@mui/icons-material'
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React, { useContext } from 'react'
 
 const AccountModal = () => {
+  const blogpage=useContext(BlogpageContext).blogpage[0];
+
   return (
     <div className='font-sans absolute top-8 -left-[110px] w-[200px] bg-[#272424]'>
       <div className='h-[30px] items-center bg-[#3b3636] p-2 text-xs flex justify-between text-gray-300'>
@@ -28,10 +32,10 @@ const AccountModal = () => {
           <p className='text-xs text-gray-400'>0</p>
         </div>
         <div className='flex hover:bg-[#464040] p-2 h-[35px]'>
-          <div className='flex gap-2 text-xs items-center'>
+          <Link href={"/settings/"+blogpage?.displayName} className='flex gap-2 text-xs items-center'>
             <Settings fontSize='small' className='text-gray-400'/>
             Settings
-          </div>
+          </Link>
         </div>
         <div className='flex hover:bg-[#464040] p-2 h-[35px]'>
           <div className='flex gap-2 text-xs items-center'>

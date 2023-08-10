@@ -109,7 +109,7 @@ console.log()
         </div>
         <div className='bg-[#272424] w-[500px] shadow-slate-100 shadow-2xl flex flex-col h-full'>
             <div className='text-sm font-semibold h-[40px] px-5 flex items-center'>{blogpage[0]?.displayName}</div>
-            <form className="h-full w-full flex flex-col justify-between" method="post"  onSubmit={handleOnSubmit}>
+            <form className="h-full w-full flex flex-col justify-between" method="post" onSubmit={handleOnSubmit}>
                 {imageSrc&&
                 <div className='relative'>
                     <Image className='h-[250px] object-cover' src={imageSrc} height={1000} width={1000} alt=''/>
@@ -124,7 +124,7 @@ console.log()
                     {warn&&<p className='flex justify-end text-xs text-red-500'>*Please add an image or text to post</p>}
                 </div>
                 <div className='px-5 border-t-[1px] h-[60px] border-gray-700 w-full items-center flex justify-between'>
-                    <button className='p-3 flex h-8 rounded-full items-center justify-center bg-[#6d6767]' onClick={()=>setOpen(false)}>close</button>
+                    <button className='p-3 flex h-8 rounded-full items-center justify-center bg-[#6d6767]' type='button' onClick={()=>setOpen(false)}>close</button>
                     <button className='p-3 flex h-8 rounded-full items-center justify-center border-2 border-[#6d6767]'  type='submit'>{button}</button>
                 </div>
             </form>
