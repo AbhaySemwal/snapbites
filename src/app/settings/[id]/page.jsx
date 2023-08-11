@@ -126,11 +126,11 @@ const Settings = ({params}) => {
                 theme
               })
             });
-            setSaved(true)
+            setSaved(true);
           }catch(err){
             setErr(true);
           }
-        
+        window.location.reload();
     }
     const desc=useRef();
     const handleCancel=(e)=>{
@@ -143,9 +143,9 @@ const Settings = ({params}) => {
             isCurr?
             <>
                 <Navbar fixed={true}/>
-                <div className='text-white mt-24 flex gap-8'>
+                <div className={`theme${theme} text-white mt-24 flex gap-8`}>
                     <div className='w-full flex flex-col items-center'>
-                        <form className='bg-white' onSubmit={handleSubmit}>
+                        <form className='bg2' onSubmit={handleSubmit}>
                             <div className='relative w-full h-[325px] '>
                                 <Image className='object-cover h-full w-full' src={imageSrc!==null?imageSrc:blogpage?.coverPicture} height={1000} width={1000} alt=''></Image>
                                 <input className='hidden' id='coverPicture' type="file" name="file" onChange={handleOnChange}></input>
@@ -164,12 +164,12 @@ const Settings = ({params}) => {
                             </div>
                             <div className='flex flex-col items-center justify-center mt-16 gap-2 text-black'>
                             <div className='flex justify-center'>
-                                <p className='text-center text-black text-2xl outline-none font-semibold'>{blogpage?.name}</p>
+                                <p className='text-center name text-2xl outline-none font-semibold'>{blogpage?.name}</p>
                             </div>
-                                <p className='text-center text-black text-medium outline-none font-semibold'>{"@"+blogpage?.displayName}</p>
+                                <p className='text-center displayname text-medium outline-none font-semibold'>{"@"+blogpage?.displayName}</p>
                             </div>
                             <div className='w-full flex justify-center'>
-                                <input ref={desc} placeholder={blogpage?.desc?blogpage?.desc:"Add Description"} className=' text-center px-12 w-fit font-medium text-black text-sm my-5 placeholder-black   outline-none'></input>
+                                <input ref={desc} placeholder={blogpage?.desc?blogpage?.desc:"Add Description"} className='desc bg-transparent placeholder:text-gray-500 text-center px-12 w-fit font-medium text-black text-sm my-5 placeholder-black   outline-none'></input>
                             </div>
                             <div className='w-full bg-[#272424] flex flex-col items-start'>
                                 <div className='relative w-full px-5 py-2 mt-2 font-semibold'>Choose theme for your blogpage</div>

@@ -11,6 +11,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Close } from '@mui/icons-material';
 import { BlogpageContext } from '@/context/BlogpageContext';
 import Checkout from '../checkout/Checkout';
+import Comment from '../comment/Comment';
+import Like from '../like/Like';
 
 const Rightbar = () => {
   const [clicked,setClicked]=useState(false);
@@ -260,12 +262,8 @@ const Rightbar = () => {
                   {commentclicked&&
                     (comments?.length!==0?
                     comments?.map((comment)=>(
-                    <div key={comment._id} className='flex w-fit max-w-[90%] gap-2 my-3 px-2'>
-                      <Image className='h-8 w-8 rounded-full' src={comment?.profilePicture} width={1000} height={1000} alt=''></Image>
-                      <div className='border-[1px] border-gray-700 rounded-lg p-2 h-fit'>
-                        <Link href={"/"+comment?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{comment?.displayName}</h1></Link>
-                        <p className='text-sm'>{comment?.text}</p>
-                      </div>
+                    <div key={comment._id}>
+                      <Comment comment={comment}/>
                     </div>
                   )):
                   <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
@@ -277,9 +275,8 @@ const Rightbar = () => {
                     likesclicked&&
                     (likes?.length>0?
                     likes?.map((user)=>(
-                      <div key={user._id} className='flex w-fit items-center max-w-[90%] gap-2 my-3 px-2'>
-                      <Image className='h-8 w-8 rounded-full' src={user?.profilePicture} width={1000} height={1000}alt=''></Image>
-                        <Link href={"/"+user?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{user?.displayName}</h1></Link>
+                      <div key={user._id}>
+                        <Like user={user}/>
                     </div>
                     )):
                       <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
