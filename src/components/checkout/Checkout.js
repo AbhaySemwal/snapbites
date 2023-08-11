@@ -33,7 +33,7 @@ const Checkout = ({d,checkout,setCheckout,blogpage}) => {
         <Image className='h-[35px] w-[35px] rounded-sm object-cover' src={d?.profilePicture} alt='' height={1000} width={1000}/>
         <div className='text-sm font-semibold'>
             <p>{d?.displayName}</p>
-            <p className='font-normal text-gray-400'>{d?.desc}</p>
+            <p className='font-normal text-gray-400'>{d?.name}</p>
         </div>
         </div></Link>
         <div className='flex items-center text-sm  gap-3'>

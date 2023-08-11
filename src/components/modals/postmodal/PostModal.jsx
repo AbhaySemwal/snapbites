@@ -105,7 +105,7 @@ console.log()
   return (
     <div className="z-40 text-white absolute h-[400px] flex gap-5 top-40 rounded-md left-[450px] ">
         <div className=''>
-            <Image className='shadow-slate-100 shadow-2xl h-[60px] w-[60px] rounded-sm' src={blogpage[0]?.profilePicture} height={1000} width={1000} alt=''></Image>
+            <Image className='shadow-slate-100 shadow-2xl h-[60px] w-[60px] rounded-sm' src={blogpage[0]?.profilePicture?blogpage[0]?.profilePicture:"/pyramid_closed_96.png"} height={1000} width={1000} alt=''></Image>
         </div>
         <div className='bg-[#272424] w-[500px] shadow-slate-100 shadow-2xl flex flex-col h-full'>
             <div className='text-sm font-semibold h-[40px] px-5 flex items-center'>{blogpage[0]?.displayName}</div>

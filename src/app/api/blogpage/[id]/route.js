@@ -14,3 +14,15 @@ export const PUT =async(request,{params})=>{
         return new NextResponse("Database error",{status:500});
     }
   }
+
+  export const GET = async (request,{params}) => {
+    try {
+      await connect();
+  
+      const blogpage = await Blogpage.findById(params.id);
+  
+      return new NextResponse(JSON.stringify(blogpage), { status: 200 });
+    } catch (err) {
+      return new NextResponse("Database Error", { status: 500 });
+    }
+  };

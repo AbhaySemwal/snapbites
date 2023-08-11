@@ -7,6 +7,8 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Close } from '@mui/icons-material';
+import Comment from '../comment/Comment';
+import Like from '../like/Like';
 
 
 const Post = ({d,blogpage}) => {
@@ -17,12 +19,34 @@ const Post = ({d,blogpage}) => {
     const [followed,setFollowed]=useState(false);
     
     useEffect(()=>{
+      
+    })
+    
+    const [user,setUser]=useState([]);
+    useEffect(()=>{
       d?.likes.forEach(element => {
         if(element?._id===blogpage?._id)
         setLiked(true);
       });
+      const getUser=async()=>{
+        try{
+          const res=await fetch(`http://localhost:3000/api/blogpage/${d?.userId}`,{
+              method:"GET",
+              headers:{
+                "Content-Type":"application/json",
+              },
+            });
+            const x=await res.json();
+          setUser(x);
+        }
+        catch(err)
+        {
+          console.log(err)
+        }
+      }
+      getUser();
     },[blogpage,d]);
-
+    
     useEffect(()=>{
         setFollowed(blogpage?.following?.includes(d?.userId))
     },[d]);
@@ -131,11 +155,12 @@ const Post = ({d,blogpage}) => {
           console.log(err)
         }
       }
+
   return (
     <div className='w-[70%] gap-5 flex mb-5'>
     <div className='w-[10%] h-full'>
         <Link className='sticky -z-10 top-3' href={"/"+d?.displayName}>
-          <Image className= "cursor-pointer rounded-md" src={d?.userProfile} width={75} height={75} alt=''></Image>
+          <Image className= "cursor-pointer rounded-md" src={user?.profilePicture?user?.profilePicture:"/pyramid_closed_96.png"} width={75} height={75} alt=''></Image>
         </Link>
     </div>
     <div className='w-[90%] flex flex-col '>
@@ -185,12 +210,8 @@ const Post = ({d,blogpage}) => {
                   {commentclicked&&
                     (comments.length!==0?
                     comments.map((comment)=>(
-                    <div key={comment._id} className='flex w-fit max-w-[90%] gap-2 my-3 px-5'>
-                      <Image className='h-8 w-8 rounded-full' src={comment?.profilePicture} width={1000} height={1000} alt=''></Image>
-                      <div className='border-[1px] border-gray-700 rounded-lg p-2 h-fit'>
-                        <Link href={"/"+comment?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{comment?.displayName}</h1></Link>
-                        <p className='text-sm'>{comment?.text}</p>
-                      </div>
+                    <div key={comment._id}>
+                      <Comment comment={comment}/>
                     </div>
                   )):
                   <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
@@ -202,9 +223,8 @@ const Post = ({d,blogpage}) => {
                     likesclicked&&
                     (likes.length>0?
                     likes?.map((user)=>(
-                      <div key={user._id} className='flex w-fit items-center max-w-[90%] gap-2 my-3 px-5'>
-                      <Image className='h-8 w-8 rounded-full' src={user?.profilePicture} width={1000} height={1000}alt=''></Image>
-                        <Link href={"/"+user?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{user?.displayName}</h1></Link>
+                      <div key={user._id} >
+                        <Like user={user}/>
                     </div>
                     )):
                       <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
