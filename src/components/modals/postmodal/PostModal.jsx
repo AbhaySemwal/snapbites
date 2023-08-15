@@ -70,7 +70,7 @@ console.log()
           body: formData
           }).then(r => r.json());
           console.log(data)
-          setImageSrc(data.secure_url);
+          setImageSrc(data.url);
           setUploadData(data);
         }
         try{

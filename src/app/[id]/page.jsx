@@ -10,6 +10,7 @@ import { BlogpageContext } from '@/context/BlogpageContext';
 import { notFound } from 'next/navigation';
 import PagePost from '@/components/pagePost/PagePost';
 import PageRecc from '@/components/pageRecc/PageRecc';
+import SendMessageModal from '@/components/modals/SendMessageModal';
 
 const data1=[
   {
@@ -162,7 +163,7 @@ const Id = ({params}) => {
       }
     }
   }
-  
+  const [open,setOpen]=useState(false);
   return (
     <div className='text-white font-sans'>
         <Navbar fixed={true}/>
@@ -180,12 +181,13 @@ const Id = ({params}) => {
               </div>
               <div className='flex justify-center w-full mb-10'>
                 <div className='flex justify-between gap-2 items-center'>
-                  <button className={`buttonbg text-white rounded-full px-3 py-2 text-base font-medium`}>Ask me anything</button>
+                  <button className={`buttonbg text-white rounded-full px-3 py-2 text-base font-medium`} onClick={()=>{setOpen(!open)}}>Ask me anything</button>
                   {bp?.displayName!==blogpage[0]?.displayName&&<button className='buttonbg text-white rounded-full px-3 py-2 text-base font-medium' onClick={()=>handleFollow(bp?._id)}>{followed?"Following":"Follow"}</button>}
                   <button className={`border-[2px] rounded-full border-gray-400 p-1 desc`}><RedeemIcon/></button>
                   <button className={`border-[2px] rounded-full border-gray-400 desc p-1`}><AddCommentOutlined/></button>
                   <button className={`border-[2px] rounded-full border-gray-400 desc p-1`}><MoreHorizIcon/></button>
                 </div>
+                {open&&<SendMessageModal setOpen={setOpen} receiver={bp} blogpage={blogpage}/>}
               </div>
               <div className='w-full flex flex-col px-5'>
                 <div className={`border-b-[1px] borderpost w-full mb-5`}><span className={`displayname borderpost font-semibold border-b-[2px] px-2`}>Posts</span></div>

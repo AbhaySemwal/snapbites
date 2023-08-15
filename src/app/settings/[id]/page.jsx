@@ -91,7 +91,7 @@ const Settings = ({params}) => {
             body: formData
             }).then(r => r.json());
             console.log(data)
-            setImageSrc2(data.secure_url);
+            setImageSrc2(data.url);
             setUploadData2(data);
             }
             if(imageSrc2!==null)
@@ -109,7 +109,7 @@ const Settings = ({params}) => {
             body: formData
             }).then(r => r.json());
             console.log(data)
-            setImageSrc(data.secure_url);
+            setImageSrc(data.url);
             setUploadData(data);
             }
             const coverPicture=(imageSrc==null?blogpage?.coverPicture:imageSrc);

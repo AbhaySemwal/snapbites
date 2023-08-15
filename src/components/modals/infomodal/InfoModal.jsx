@@ -1,11 +1,11 @@
 import { Bolt } from '@mui/icons-material'
 import React from 'react'
 
-const InfoModal = () => {
+const InfoModal = ({blogpage}) => {
   return (
     <div className='absolute top-8 font-sans -right-28 bg-[#272424] w-[330px]'>
       <div className='flex p-3 border-b-[1px] border-gray-700'>
-        <h2 className='text-gray-400 font-semibold text-xs'>LoremIpsum</h2>
+        <h2 className='text-gray-400 font-semibold text-xs'>{blogpage?.displayName}</h2>
       </div>
       <div className='bg-[#272424] h-[32px] flex text-xs  text-gray-400 font-semibold justify-between'>
         <div className='w-1/4 flex justify-center items-center border-b-[2px] border-blue-400'>
