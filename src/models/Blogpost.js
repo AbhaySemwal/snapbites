@@ -36,10 +36,6 @@ const blogpostSchema = new Schema(
             type:String,
             required:true
           },
-          profilePicture:{
-            type:String,
-            required:true
-          },
         }
       ],
     comments:[
@@ -49,10 +45,6 @@ const blogpostSchema = new Schema(
           required:true
         },
         displayName:{
-          type:String,
-          required:true
-        },
-        profilePicture:{
           type:String,
           required:true
         },

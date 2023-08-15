@@ -7,6 +7,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Close } from '@mui/icons-material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Link from 'next/link';
+import PageComment from '../pageComment/PageComment';
+import PageLike from '../pageLike/PageLike';
 
 const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
     const [err,setErr]=useState(false);
@@ -35,7 +37,7 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
           }
           else
           {
-            likes.push({displayName:blogpage?.displayName,profilePicture:blogpage?.profilePicture,_id:blogpage?._id});
+            likes.push({displayName:blogpage?.displayName,_id:blogpage?._id});
           }
           setLiked(!liked);
           const res=await fetch(`http://localhost:3000/api/blogpost/like/${d?._id}`,{
@@ -46,7 +48,6 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
             body:JSON.stringify({
               _id:blogpage?._id,
               displayName:blogpage?.displayName,
-              profilePicture:blogpage?.profilePicture,
             })
           });
          
@@ -78,13 +79,11 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
       const handleSubmit=async(e)=>{
         e.preventDefault();
         const text=e.target[0].value;
-        const profilePicture=blogpage?.profilePicture;
         const displayName=blogpage?.displayName;
         const userId=blogpage?._id;
         setComments((prev)=>([...prev,{
               userId:blogpage._id,
               text:text,
-              profilePicture:profilePicture,
               displayName:displayName}]))
               e.target[0].value="";
               try{
@@ -94,7 +93,6 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
                     method:"PUT",
                     body:JSON.stringify({
                 text:text,
-                profilePicture:profilePicture,
                 displayName:displayName,
                 userId:userId
               }),
@@ -156,12 +154,8 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
                   {commentclicked&&
                     (comments.length!==0?
                     comments.map((comment)=>(
-                    <div key={comment._id} className='flex w-fit max-w-[90%] gap-2 my-3 px-5 '>
-                      <Image className='h-8 w-8 rounded-full' src={comment?.profilePicture} width={1000} height={1000} alt=''></Image>
-                      <div className='border-[1px] border-gray-700 rounded-lg p-2 h-fit'>
-                        <Link href={"/"+comment?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{comment?.displayName}</h1></Link>
-                        <p className='text-sm'>{comment?.text}</p>
-                      </div>
+                    <div key={comment._id}>
+                      <PageComment comment={comment}/>
                     </div>
                   )):
                   <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>
@@ -173,9 +167,8 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
                     likesclicked&&
                     (likes.length>0?
                     likes?.map((user)=>(
-                      <div key={user._id} className='flex w-fit items-center max-w-[90%] gap-2 my-3 px-5'>
-                      <Image className='h-8 w-8 rounded-full' src={user?.profilePicture} width={1000} height={1000}alt=''></Image>
-                        <Link href={"/"+user?.displayName}><h1 className='mb-1.5 text-xs font-semibold'>{user?.displayName}</h1></Link>
+                      <div key={user._id} >
+                        <PageLike user={user}/>
                     </div>
                     )):
                       <div className='h-full w-full text-gray-500 flex flex-col gap-2 items-center justify-center'>

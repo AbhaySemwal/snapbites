@@ -84,7 +84,7 @@ const Post = ({d,blogpage}) => {
           }
           else
           {
-            likes.push({displayName:blogpage?.displayName,profilePicture:blogpage?.profilePicture,_id:blogpage?._id});
+            likes.push({displayName:blogpage?.displayName,_id:blogpage?._id});
           }
           setLiked(!liked);
           const res=await fetch(`http://localhost:3000/api/blogpost/like/${d?._id}`,{
@@ -95,7 +95,6 @@ const Post = ({d,blogpage}) => {
             body:JSON.stringify({
               _id:blogpage?._id,
               displayName:blogpage?.displayName,
-              profilePicture:blogpage?.profilePicture,
             })
           });
          
@@ -127,13 +126,11 @@ const Post = ({d,blogpage}) => {
       const handleSubmit=async(e)=>{
         e.preventDefault();
         const text=e.target[0].value;
-        const profilePicture=blogpage?.profilePicture;
         const displayName=blogpage?.displayName;
         const userId=blogpage?._id;
         setComments((prev)=>([...prev,{
               userId:blogpage._id,
               text:text,
-              profilePicture:profilePicture,
               displayName:displayName}]))
               e.target[0].value="";
               try{
@@ -143,7 +140,6 @@ const Post = ({d,blogpage}) => {
                     method:"PUT",
                     body:JSON.stringify({
                 text:text,
-                profilePicture:profilePicture,
                 displayName:displayName,
                 userId:userId
               }),

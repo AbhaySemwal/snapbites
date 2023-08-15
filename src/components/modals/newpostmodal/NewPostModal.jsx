@@ -21,8 +21,8 @@ const NewPostModal = ({setNewClicked}) => {
     };
   }, []);
   return (
-    <div className='z-40 font-sans absolute flex justify-center right-0 items-center top-0 h-[82vh] bg-transparent/80 text-white w-screen'>
-        <div ref={componentRef} className='relative flex left-32 gap-16'>
+    <div className='z-40 transform scale-[1.20] font-sans absolute flex justify-center right-0 items-center top-0 h-[100vh] bg-transparent/80 text-white w-screen'>
+        <div ref={componentRef} className='relative flex gap-16'>
           <div className='flex'>
             <div className='flex flex-col gap-8 justify-center items-center'>
               <div className=' text-black font-semibold flex transform scale-[2] rounded-full bg-white px-3.5 py-3'>
