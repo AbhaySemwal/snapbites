@@ -69,7 +69,7 @@ const Id = ({params}) => {
   useEffect(()=>{
     const getData=async()=>{
       setLoading(true);
-    const res=await fetch("http://localhost:3000/api/blogpage",{
+    const res=await fetch("/api/blogpage",{
       // next:{revalidate:10}
     cache:"no-store",
   });
@@ -89,7 +89,7 @@ const Id = ({params}) => {
   useEffect(()=>{
     const getUser=async()=>{
       setLoading(true);
-      const res=await fetch(`http://localhost:3000/api/blogpage?displayName=${params.id}`,{
+      const res=await fetch(`/api/blogpage?displayName=${params.id}`,{
         // next:{revalidate:10}
         cache:"no-store",
         });
@@ -107,7 +107,7 @@ const Id = ({params}) => {
       
       const getUserPosts=async()=>{
         setLoading(true);
-        const res=await fetch(`http://localhost:3000/api/blogpost?displayName=${params.id}`,{
+        const res=await fetch(`/api/blogpost?displayName=${params.id}`,{
           // next:{revalidate:10}
           cache:"no-store",
           });
@@ -133,7 +133,7 @@ const Id = ({params}) => {
          blogpage[0]?.following?.filter(function(item) {
           return item !== userId
       })
-        const res=await fetch(`http://localhost:3000/api/blogpage/unfollow/${userId}`,{
+        const res=await fetch(`/api/blogpage/unfollow/${userId}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",
@@ -151,7 +151,7 @@ const Id = ({params}) => {
       try{
         setFollowed(true);
         blogpage?.following?.push(d?.userId);
-        const res=await fetch(`http://localhost:3000/api/blogpage/follow/${userId}`,{
+        const res=await fetch(`/api/blogpage/follow/${userId}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",

@@ -63,7 +63,7 @@ const path=usePathname();
 const [page,setPage]=useState([]);
 useEffect(()=>{
   const getPages=async()=>{
-    const res=await fetch("http://localhost:3000/api/blogpage",{
+    const res=await fetch("/api/blogpage",{
   cache:"no-store",
   });
   if(!res.ok)

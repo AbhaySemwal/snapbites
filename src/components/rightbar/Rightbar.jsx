@@ -47,7 +47,7 @@ const Rightbar = () => {
   useEffect(()=>{
     const getData=async()=>{
       setLoading(true);
-    const res=await fetch("http://localhost:3000/api/blogpost",{
+    const res=await fetch("/api/blogpost",{
       // next:{revalidate:10}
     cache:"no-store",
   });
@@ -87,7 +87,7 @@ const Rightbar = () => {
       try{
         setFollowed(true);
         blogpage?.following?.push(d?.userId);
-        const res=await fetch(`http://localhost:3000/api/blogpage/follow/${d?.userId}`,{
+        const res=await fetch(`/api/blogpage/follow/${d?.userId}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",
@@ -119,7 +119,7 @@ const Rightbar = () => {
           likes.push({displayName:blogpage?.displayName,profilePicture:blogpage?.profilePicture,_id:blogpage?._id});
         }
         setLiked(!liked);
-        const res=await fetch(`http://localhost:3000/api/blogpost/like/${d?._id}`,{
+        const res=await fetch(`/api/blogpost/like/${d?._id}`,{
           method:"PUT",
           headers:{
             "Content-Type":"application/json",
@@ -174,7 +174,7 @@ const Rightbar = () => {
             try{
               if(text!=''||text!=' ')
               {
-                await fetch(`http://localhost:3000/api/blogpost/comment/${d?._id}`,{
+                await fetch(`/api/blogpost/comment/${d?._id}`,{
                   method:"PUT",
                   body:JSON.stringify({
               text:text,

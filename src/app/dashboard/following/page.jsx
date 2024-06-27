@@ -12,7 +12,7 @@ const Following = () => {
   useEffect(()=>{
    const getData=async()=>{
     setLoading(true);
-    const res=await fetch("http://localhost:3000/api/blogpost",{
+    const res=await fetch("/api/blogpost",{
     // next:{revalidate:10}
     cache:"no-store",
     });

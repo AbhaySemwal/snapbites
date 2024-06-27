@@ -7,7 +7,7 @@ const PageComment = ({comment}) => {
     useEffect(()=>{
         const getUser=async()=>{
             try{
-              const res=await fetch(`http://localhost:3000/api/blogpage/${comment?.userId}`,{
+              const res=await fetch(`/api/blogpage/${comment?.userId}`,{
                   method:"GET",
                   headers:{
                     "Content-Type":"application/json",

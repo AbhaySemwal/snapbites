@@ -40,7 +40,7 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
             likes.push({displayName:blogpage?.displayName,_id:blogpage?._id});
           }
           setLiked(!liked);
-          const res=await fetch(`http://localhost:3000/api/blogpost/like/${d?._id}`,{
+          const res=await fetch(`/api/blogpost/like/${d?._id}`,{
             method:"PUT",
             headers:{
               "Content-Type":"application/json",
@@ -89,7 +89,7 @@ const PagePost = ({d,bp,blogpage,followed,handleFollow}) => {
               try{
                 if(text!=''||text!=' ')
                 {
-                  await fetch(`http://localhost:3000/api/blogpost/comment/${d?._id}`,{
+                  await fetch(`/api/blogpost/comment/${d?._id}`,{
                     method:"PUT",
                     body:JSON.stringify({
                 text:text,

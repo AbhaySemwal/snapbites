@@ -21,7 +21,7 @@ const Explore = ({children}) => {
   useEffect(()=>{
     const getData=async()=>{
       setLoading(true);
-    const res=await fetch("http://localhost:3000/api/blogpage",{
+    const res=await fetch("/api/blogpage",{
       // next:{revalidate:10}
     cache:"no-store",
   });

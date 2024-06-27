@@ -29,7 +29,7 @@ export default function PostModal({setOpen} ) {
   const [blogpage,setBlogpage]=useState([]);
   useEffect(()=>{
     const getUser=async()=>{
-      const res=await fetch(`http://localhost:3000/api/blogpage?name=${session.data?.user.name}`,{
+      const res=await fetch(`/api/blogpage?name=${session.data?.user.name}`,{
       // next:{revalidate:10}
       cache:"no-store",
       });

@@ -13,7 +13,7 @@ const ExploreCheckout = ({d,checkout,setCheckout,blogpage}) => {
         try{
           setFollowed(true);
           blogpage?.following?.push(d?.userId);
-          const res=await fetch(`http://localhost:3000/api/blogpage/follow/${d?.userId}`,{
+          const res=await fetch(`/api/blogpage/follow/${d?.userId}`,{
             method:"PUT",
             headers:{
               "Content-Type":"application/json",
