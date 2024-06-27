@@ -72,7 +72,7 @@ const Register = () => {
                         <input className='text-black outline-none rounded-md h-10 p-2' placeholder='Email' type='email'></input>
                         <input ref={pass} className='text-black outline-none rounded-md h-10 p-2' placeholder='Password' minLength={6} type='password'></input>
                         <input ref={passwordAgain} className='text-black outline-none rounded-md h-10 p-2' placeholder='Password again' minLength={6} type='password'></input>
-                        {warn&&<p className='text-red-500 text-xs'>Passwords don't match</p>}
+                        {warn&&<p className='text-red-500 text-xs'>Passwords don&apos;t match</p>}
                         <button className='bg-blue-400 text-black rounded-md h-10 font-semibold'>Sign up</button>
                     </form>
                     <div className='flex items-center justify-center w-full my-2'>

@@ -51,9 +51,9 @@ const Explore = ({children}) => {
         </div>
         <div className='w-[40%] mt-8 text-white font-sans px-3 '>
           <div className='w-[55%] bg-[#191717] flex flex-col justify-center py-3 px-4'>
-              <h2 className='text-lg font-semibold mb-2'>Let's get personal</h2>
-              <p className='text-sm text-gray-400 mb-5'>Whatever you're into, Snapbites has it. Follow tags that matter to you, and the things you love will show up here.</p>
-              <button className='text-sm py-3 text-[#191717] rounded-sm bg-blue-500 mb-2 font-semibold'>Let's follow some tags</button>
+              <h2 className='text-lg font-semibold mb-2'>Let&apos;s get personal</h2>
+              <p className='text-sm text-gray-400 mb-5'>Whatever you&apos;re into, Snapbites has it. Follow tags that matter to you, and the things you love will show up here.</p>
+              <button className='text-sm py-3 text-[#191717] rounded-sm bg-blue-500 mb-2 font-semibold'>Let&apos;s follow some tags</button>
               <button className='text-sm py-3 text-gray-400 rounded-sm border-2 border-gray-400 font-semibold'>Maybe later</button>
           </div>
           <div className='w-[55%] my-5 border-gray-700 border-b-[1px]'></div>
@@ -63,8 +63,8 @@ const Explore = ({children}) => {
               </div>
               <div className='px-2 border-gray-700 border-b-[1px]'>
                 {loading?<p className='my-2'>Loading...</p>:
-                  checkout.slice(0,4).map(d=>(
-                    <ExploreCheckout d={d} blogpage={blogpage} checkout={checkout} setCheckout={setCheckout}/>
+                  checkout.slice(0,4).map((d,index)=>(
+                    <ExploreCheckout key={index} d={d} blogpage={blogpage} checkout={checkout} setCheckout={setCheckout}/>
                   ))
                 }
               </div>

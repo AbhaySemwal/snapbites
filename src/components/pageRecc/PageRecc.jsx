@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Close } from '@mui/icons-material';
 import Image from 'next/image';
 
-const pageRecc = ({d,checkout,setCheckout,blogpage,bp}) => {
+const PageRecc = ({d,checkout,setCheckout,blogpage,bp}) => {
   const [followed,setFollowed]=useState(false);
   useEffect(()=>{
       setFollowed(blogpage?.following?.includes(d?.userId))
@@ -47,4 +47,4 @@ const pageRecc = ({d,checkout,setCheckout,blogpage,bp}) => {
   )
 }
 
-export default pageRecc
+export default PageRecc;

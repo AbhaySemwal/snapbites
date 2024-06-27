@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image'
 import React, { useState,useEffect,useContext } from 'react'
-import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ShareIcon from '@mui/icons-material/Share';
@@ -59,7 +58,7 @@ const Rightbar = () => {
       if((i?.userId!==blogpage?._id)&&(!(blogpage?.following?.includes(i?.userId))))
       setD(i);
     })
-    if(setD==={})
+    if(setD=={})
     setD(x[0]);
     if(blogpage)
     setLoading(false);

@@ -40,7 +40,7 @@ const StoreModal = () => {
             <div className='border-b-[1px] border-gray-700 py-2 flex flex-col gap-5'>
               <div>
                 <h1 className='text-xs font-medium'>SnapBites Horse Friend</h1>
-                <p className='text-xs font-light'>Get busy scoopin', or get busy dyin'</p>
+                <p className='text-xs font-light'>Get busy scoopin&apos;, or get busy dyin&apos;</p>
               </div>
               <div className='flex gap-2 text-xs text-blue-500'>
                 <button className='rounded-full bg-[#3a4b6b] px-2 py-1'>Shop</button>
@@ -53,7 +53,7 @@ const StoreModal = () => {
             <div className='border-b-[1px] border-gray-700 py-2 flex flex-col gap-5'>
               <div>
                 <h1 className='text-xs font-medium'>SnapBites Dashboard Crabs</h1>
-                <p className='text-xs font-light'>Crabs! Crabs everywhere! Catch 'em all.</p>
+                <p className='text-xs font-light'>Crabs! Crabs everywhere! Catch &apos;em all.</p>
               </div>
               <div className='flex gap-2 text-xs text-blue-500'>
                 <button className='bg-[#3a4b6b] py-1 px-2 rounded-full gap-1 items-center justify-center'><RedeemIcon fontSize='small'/> Gift</button>

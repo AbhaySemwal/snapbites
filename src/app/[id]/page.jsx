@@ -59,10 +59,33 @@ const Id = ({params}) => {
   const [flag,setFlag]=useState(false);
   const [loading,setLoading]=useState(true);
   const [followed,setFollowed]=useState(false)
+  const [checkout, setCheckout]=useState([]);
+  const [open,setOpen]=useState(false);
+  
   useEffect(()=>{
     setFollowed(blogpage[0]?.following?.includes(bp?._id))
   },[bp]);
   
+  useEffect(()=>{
+    const getData=async()=>{
+      setLoading(true);
+    const res=await fetch("http://localhost:3000/api/blogpage",{
+      // next:{revalidate:10}
+    cache:"no-store",
+  });
+    if(!res.ok)
+    throw new Error("Failed to fetch data");
+    const x=await res.json();
+    const y=x?.filter((i)=>{
+      return (((!blogpage[0]?.following?.includes(i?._id))&&(blogpage[0]?._id!==i?._id)));
+    })
+    setCheckout(y);
+    if(blogpage[0])
+    setLoading(false);
+    }
+    getData();
+  },[params.id,blogpage]);
+
   useEffect(()=>{
     const getUser=async()=>{
       setLoading(true);
@@ -101,27 +124,6 @@ const Id = ({params}) => {
 
   if(flag)
   return notFound();
-
-  const [checkout, setCheckout]=useState([]);
-  useEffect(()=>{
-    const getData=async()=>{
-      setLoading(true);
-    const res=await fetch("http://localhost:3000/api/blogpage",{
-      // next:{revalidate:10}
-    cache:"no-store",
-  });
-    if(!res.ok)
-    throw new Error("Failed to fetch data");
-    const x=await res.json();
-    const y=x?.filter((i)=>{
-      return (((!blogpage[0]?.following?.includes(i?._id))&&(blogpage[0]?._id!==i?._id)));
-    })
-    setCheckout(y);
-    if(blogpage[0])
-    setLoading(false);
-    }
-    getData();
-  },[params.id,blogpage]);
 
   const handleFollow=async(userId)=>{
     if(followed)
@@ -163,7 +165,6 @@ const Id = ({params}) => {
       }
     }
   }
-  const [open,setOpen]=useState(false);
   return (
     <div className='text-white font-sans'>
         <Navbar fixed={true}/>
@@ -192,8 +193,8 @@ const Id = ({params}) => {
               <div className='w-full flex flex-col px-5'>
                 <div className={`border-b-[1px] borderpost w-full mb-5`}><span className={`displayname borderpost font-semibold border-b-[2px] px-2`}>Posts</span></div>
                 {
-                  data?.map(d=>(
-                        <PagePost d={d} bp={bp} blogpage={blogpage[0]} followed={followed} handleFollow={handleFollow}/>
+                  data?.map((d,index)=>(
+                        <PagePost key={index} d={d} bp={bp} blogpage={blogpage[0]} followed={followed} handleFollow={handleFollow}/>
                   ))
                 }
               </div>
@@ -205,8 +206,8 @@ const Id = ({params}) => {
                   </div>
                   <div>
                     {
-                      checkout.slice(0,4).map(d=>(
-                        <PageRecc d={d} blogpage={blogpage} bp={bp} checkout={checkout} setCheckout={setCheckout}/>
+                      checkout.slice(0,4).map((d,index)=>(
+                        <PageRecc key={index} d={d} blogpage={blogpage} bp={bp} checkout={checkout} setCheckout={setCheckout}/>
                       ))
                     }
                     <div className='my-5 rounded-b-md border-t-slate-200 border-[1px] p-2 text-base flex justify-center items-center'>
@@ -218,8 +219,8 @@ const Id = ({params}) => {
                 <div className='border-slate-200 border-b-[1px] py-2 mb-5'><span className={`othertext text-xl font-medium`}>More like this</span></div>
                 <div className='flex flex-wrap gap-[2px] rounded-lg overflow-hidden'>
                     {
-                      data1.map(d=>(
-                        <Image  className='cursor-pointer h-[100px] w-[32.9%] object-cover' src={d.img} height={1000} width={1000} alt=''></Image>
+                      data1.map((d,index)=>(
+                        <Image key={index}  className='cursor-pointer h-[100px] w-[32.9%] object-cover' src={d.img} height={1000} width={1000} alt=''></Image>
                       ))
                     }
                 </div>

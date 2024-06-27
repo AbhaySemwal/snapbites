@@ -53,7 +53,7 @@ const AccountModal = () => {
           <div className='flex hover:bg-[#464040] p-2 h-[35px]'>
             <div className='flex gap-2 text-xs items-center'>
               <StarBorderOutlined fontSize='small' className='text-gray-400'/>
-              What's new
+              What&apos;s new
             </div>
           </div>
           <div className='flex hover:bg-[#464040] p-2 h-[35px]'>
