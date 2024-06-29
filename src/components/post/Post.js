@@ -18,10 +18,6 @@ const Post = ({d,blogpage}) => {
     const [liked,setLiked]=useState(false);
     const [followed,setFollowed]=useState(false);
     
-    useEffect(()=>{
-      
-    })
-    
     const [user,setUser]=useState([]);
     useEffect(()=>{
       d?.likes.forEach(element => {
